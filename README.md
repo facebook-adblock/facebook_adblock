@@ -8,4 +8,6 @@ An open-source Facebook Adblocker Chrome extension
 
 This extension is 100% free and open source.
 
+Install it here, https://chrome.google.com/webstore/detail/facebook-adblock/kinpgphmiekapnpbmobneleaiemkefag
+
 Enjoy!
