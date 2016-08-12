@@ -10,4 +10,8 @@ This extension is 100% free and open source.
 
 Install it here, https://chrome.google.com/webstore/detail/facebook-adblock/kinpgphmiekapnpbmobneleaiemkefag
 
+We now have a Firefox version here (Thanks to [@yan12125](https://github.com/yan12125) :+1:),
+https://addons.mozilla.org/en-US/firefox/addon/facebook_adblock/
+
+
 Enjoy!
