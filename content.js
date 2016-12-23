@@ -1,6 +1,11 @@
 (function() {
 	function remove_ads() {
+		// old version
 		$(".userContentWrapper:has(.uiStreamSponsoredLink)").remove()
+		// new version
+		$(".userContentWrapper:has(._m8d)").remove()
+		$(".userContentWrapper:has(._4dcu)").remove()
+		// sidebar ads
 		$("#pagelet_ego_pane").remove()
 	}
 	var throttled = _.throttle(remove_ads, 1000);
