@@ -1,10 +1,10 @@
 (function() {
 	function remove_ads() {
 		// old version
-		$(".userContentWrapper:has(.uiStreamSponsoredLink)").remove()
+		$(".userContentWrapper:has(.uiStreamSponsoredLink)").hide()
 		// new version
-		$(".userContentWrapper:has(._m8d)").remove()
-		$(".userContentWrapper:has(._4dcu)").remove()
+		$(".userContentWrapper:has(._m8d)").hide()
+		$(".userContentWrapper:has(._4dcu)").hide()
 		// sidebar ads
 		$("#pagelet_ego_pane").remove()
 	}
