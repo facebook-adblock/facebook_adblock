@@ -1,12 +1,12 @@
 (function() {
 	function remove_ads() {
 		// old version
-		$(".userContentWrapper:has(.uiStreamSponsoredLink)").hide()
+		$(".userContentWrapper:has(.uiStreamSponsoredLink)").hide();
 		// new version
-		$(".userContentWrapper:has(._m8d)").hide()
-		$(".userContentWrapper:has(._4dcu)").hide()
+		$(".userContentWrapper:has(._m8d)").hide();
+		$(".userContentWrapper:has(._4dcu)").hide();
 		// sidebar ads
-		$("#pagelet_ego_pane").remove()
+		$("#pagelet_ego_pane").remove();
 	}
 	var throttled = _.throttle(remove_ads, 1000);
 
