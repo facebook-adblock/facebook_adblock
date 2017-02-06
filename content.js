@@ -8,6 +8,14 @@
 		// new version
 		ucw.has("._m8c").hide();
 
+		// new version has ".fbUserContent" instead of ucw
+		var fuc = $(".fbUserContent");
+		// old version
+		fuc.has(".uiStreamSponsoredLink").hide();
+		// new version
+		fuc.has("._m8c").hide();
+		fuc.has('a[rel="nofollow"]').hide();
+
 		// so that the space will collape nicely when we remove sidebar ad
 		$(".home_right_column").css("min-height", "inherit");
 		// sidebar ads
