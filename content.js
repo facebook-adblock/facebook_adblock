@@ -23,6 +23,9 @@
 
 		// mobile version
 		$("article.acw").remove();
+
+		// Ads in group pictures
+		$(".rhcFooter").hide();
 	}
 	var throttled = _.throttle(remove_ads, 1000);
 
