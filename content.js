@@ -19,10 +19,13 @@
 		// so that the space will collape nicely when we remove sidebar ad
 		$(".home_right_column").css("min-height", "inherit");
 		// sidebar ads
-		$("#pagelet_ego_pane").remove();
+		$("#pagelet_ego_pane").hide();
 
 		// mobile version
-		$("article.acw").remove();
+		$("article.acw").hide();
+
+		// Ads in pictures (photo.php) when there is not many comments
+		$(".rhcFooter").hide();
 	}
 	var throttled = _.throttle(remove_ads, 1000);
 
