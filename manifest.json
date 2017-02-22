@@ -1,6 +1,6 @@
 {
     "name": "Ad Blocker for Facebook™",
-    "version": "1.1.9",
+    "version": "1.2.0",
     "manifest_version": 2,
     "description": "Blocking Facebook Ads",
     "homepage_url": "https://github.com/tiratatp/facebook_adblock",
@@ -11,7 +11,8 @@
         {
             "matches" : ["*://*.facebook.com/*"],
             "run_at": "document_idle",
-            "js" : ["jquery-3.1.1.slim.min.js", "underscore-min.js", "content.js"]
+            "css" : ["content.css"],
+            "js" : ["content.js"]
         }   
     ]
 }
