@@ -1,6 +1,6 @@
 {
     "name": "Ad Blocker for Facebook™",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "manifest_version": 2,
     "description": "Blocking Facebook Ads",
     "homepage_url": "https://github.com/tiratatp/facebook_adblock",
