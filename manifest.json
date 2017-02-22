@@ -2,7 +2,7 @@
     "name": "Ad Blocker for Facebook™",
     "version": "1.2.1",
     "manifest_version": 2,
-    "description": "Blocking Facebook Ads",
+    "description": "An open-source Ad Blocker for Facebook™ Chrome extension",
     "homepage_url": "https://github.com/tiratatp/facebook_adblock",
     "icons": {
             "128": "icon128.png"
