@@ -1,18 +1,12 @@
-#stream_pagelet {
-	/* make timeline long enough so we could always scroll */
-	height: 10000px!important;
-}
+/* make timeline long enough so we could always scroll */
+#stream_pagelet{height:10000px!important}
 
 /*
- .rhcFooter: ads in pictures (photo.php) when there is not many comments;
- #pagelet_ego_pane: sidebar ads
- [data-xt]: mobile suggested posts
+.rhcFooter: ads in pictures (photo.php) when there is not many comments;
+#pagelet_ego_pane: sidebar ads
+[data-xt]: mobile suggested posts
 */
-.rhcFooter, #pagelet_ego_pane, [data-xt] {
-	display: none!important;
-}
+.rhcFooter,#pagelet_ego_pane,[data-xt]{display:none!important}
 
-.home_right_column {
-	/* so that the space will collape nicely when we remove sidebar ad */
-	min-height: inherit!important;
-}
+/* so that the space will collape nicely when we remove sidebar ad */
+.home_right_column{min-height:inherit!important}

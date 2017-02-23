@@ -2,7 +2,7 @@
 	"use strict";
 	function hide_if_sponsored(e) {
 		// if e contains ._m8c, then hide
-		(0 != e.getElementsByClassName("_m8c").length) && (e.style.display = "none")
+		(0 !== e.getElementsByClassName("_m8c").length) && (e.style.display = "none")
 	}
 
 	function remove_sponsored_posts(c) {
@@ -27,7 +27,7 @@
 		fb_observer = new MutationObserver(onPageChange),
 		stream_observer = new MutationObserver(function(mutations) {
 			mutations.forEach(function(mutation) {
-				if (mutation.target.dataset.cursor) {
+				if (mutation.target.dataset.hasOwnProperty("cursor")) {
 					remove_sponsored_posts(mutation.target);
 				}
 			});
