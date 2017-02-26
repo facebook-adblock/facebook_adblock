@@ -2,7 +2,9 @@
 	"use strict";
 	function hide_if_sponsored(e) {
 		// if e contains ._m8c, then hide
-		(0 !== e.getElementsByClassName("_m8c").length) && (e.style.display = "none")
+		if (e.getElementsByClassName("_m8c").length !== 0) {
+			e.style.display = "none";			
+		}
 	}
 
 	function remove_sponsored_posts(c) {
