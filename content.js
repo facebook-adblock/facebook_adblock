@@ -1,10 +1,12 @@
 (function() {
 	"use strict";
 	function hide_if_sponsored(e) {
-		// if e contains ._m8c, then hide
-		if (e.getElementsByClassName("_m8c").length !== 0) {
-			e.style.display = "none";			
-		}
+		// if e contains ._m8c or .uiStreamSponsoredLink, then hide
+		["_m8c", "uiStreamSponsoredLink"].forEach((className) => {
+			if (e.getElementsByClassName(className).length !== 0) {
+				e.style.display = "none";			
+			}
+		});
 	}
 
 	function remove_sponsored_posts(c) {
