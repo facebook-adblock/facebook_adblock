@@ -18,26 +18,26 @@
     }
 
     function onPageChange() {
-        var stream_pagelet = document.getElementById("stream_pagelet");
+        var contentArea = document.getElementById("contentArea");
         // if the user change page to homepage
-        if (stream_pagelet !== null) {
-            remove_sponsored_posts(stream_pagelet);
-            stream_observer.observe(stream_pagelet, {childList: true, subtree: true});
+        if (contentArea !== null) {
+            remove_sponsored_posts(contentArea);
+            stream_observer.observe(contentArea, {childList: true, subtree: true});
         } else {
             // removing old observers
             stream_observer.disconnect();
         }
     }
 
-    var fb_content = document.getElementsByClassName("fb_content")[0],      
-        fb_observer = new MutationObserver(onPageChange),
+    var fb_content = document.getElementsByClassName("fb_content")[0],
         stream_observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.target.dataset.hasOwnProperty("cursor")) {
                     remove_sponsored_posts(mutation.target);
                 }
             });
-        });
+        }),
+        fb_observer = new MutationObserver(onPageChange);
 
     // if we can't find ".fb_content", then it must be a mobile website.
     // in that case, we don't need javascript to block ads
@@ -49,4 +49,11 @@
         // we need this to watch for page change
         fb_observer.observe(fb_content, {childList: true});
     }
+
+    // cleanup
+    window.addEventListener("beforeunload", function() {
+        fb_observer.disconnect();
+        stream_observer.disconnect();
+        fb_content = null;
+    });
 }());

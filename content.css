@@ -6,7 +6,7 @@
 #pagelet_ego_pane: sidebar ads
 #MRoot article[data-xt]: mobile suggested posts
 */
-.rhcFooter,#pagelet_ego_pane,#MRoot article[data-xt]{display:none!important}
+.rhcFooter, #pagelet_ego_pane, #MRoot article[data-xt]{display:none!important}
 
 /* so that the space will collape nicely when we remove sidebar ad */
 .home_right_column{min-height:inherit!important}
