@@ -27,7 +27,7 @@
                 });
             });
             feedObserver.observe(feed, {childList: true, subtree: true});
-        } else if ((feed = document.getElementById("pagelet_group_mall")) !== null) {
+        } else if ((feed = document.getElementById("pagelet_group_")) !== null) {
             // if the user change page to https://www.facebook.com/groups/*
             feed.querySelectorAll('div[id^="mall_post_"]').forEach(hideIfSponsored);
             feedObserver = new MutationObserver(function(mutations) {
@@ -37,6 +37,7 @@
             });
             feedObserver.observe(feed, {childList: true, subtree: true});
         }
+        console.info("Monitoring", [feed]);
     }
 
     var fbContent = document.getElementsByClassName("fb_content")[0],
