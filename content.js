@@ -67,7 +67,7 @@
     function hideIfSponsored(e) {
         // if e contains ._m8c or .uiStreamSponsoredLink, then hide
         // a[data-hovercard][href*="hc_ref=ADS"] from https://github.com/uBlockOrigin/uAssets/issues/233
-        var queries = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'span > div > div > a[href="#"]:only-child'];
+        var queries = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'div > span[data-ft] > div > div'];
         return queries.some(function(query) {
             if (e.querySelector(query) !== null) {
                 e.style.display = "none";
