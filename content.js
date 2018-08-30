@@ -65,13 +65,25 @@
     }
 
     function hideIfSponsored(e) {
-        // if e contains ._m8c or .uiStreamSponsoredLink, then hide
+        // if e contains anything in whitelist, then ignore.
+        var whitelist = ['.h_ff4ui_j2h'];
+        if (whitelist.some(function(query) {
+                if (e.querySelector(query) !== null) {
+                    console.info("Ignored (" + query + ")", [e]);
+                    return true;
+                }
+                return false;
+            })) {
+            return false;
+        }
+
+        // if e contains anything in blacklist, then hide.
         // a[data-hovercard][href*="hc_ref=ADS"] from https://github.com/uBlockOrigin/uAssets/issues/233
-        var queries = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'div > span[data-ft] > div > div'];
-        return queries.some(function(query) {
+        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'div > span[data-ft] > div > div'];
+        blacklist.some(function(query) {
             if (e.querySelector(query) !== null) {
                 e.style.display = "none";
-                console.info("AD Blocked", [e]);
+                console.info("AD Blocked (" + query + ")", [e]);
                 return true;
             }
             return false;
