@@ -79,7 +79,7 @@
 
         // if e contains anything in blacklist, then hide.
         // a[data-hovercard][href*="hc_ref=ADS"] from https://github.com/uBlockOrigin/uAssets/issues/233
-        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[href*="utm_campaign"]', '.uiLikePageButton'];
+        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[role="button"][target="_blank"]'];
         blacklist.some(function(query) {
             if (e.querySelector(query) !== null) {
                 e.style.display = "none";
