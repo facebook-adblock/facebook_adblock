@@ -65,8 +65,18 @@
     }
 
     function hideIfSponsored(e) {
+        // The new Facebook layout has "Sponsored" or "SpSonSsoSredS" in ALL the subtitle
+        // The non sponsored posts will have a special class that will hide "Sponsored" text
+        // This filter exploits this.
+        var spaceNextToSponsorTag = e.querySelector('[id^="feed_subtitle_"] > span:nth-child(2)');
+        if (window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
+            e.style.display = "none";
+            console.info('AD Blocked ([id^="feed_subtitle_"] > span:nth-child(2))', [e]);
+            return true;
+        }
+
         // if e contains anything in whitelist, then ignore.
-        var whitelist = ['.h_ff4ui_j2h'];
+        var whitelist = [];
         if (whitelist.some(function(query) {
                 if (e.querySelector(query) !== null) {
                     console.info("Ignored (" + query + ")", [e]);
