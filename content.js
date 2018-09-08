@@ -69,7 +69,7 @@
         // The non sponsored posts will have a special class that will hide "Sponsored" text
         // This filter exploits this.
         var spaceNextToSponsorTag = e.querySelector('[id^="feed_subtitle_"] > span:nth-child(2)');
-        if (window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
+        if (spaceNextToSponsorTag !== null && window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
             e.style.display = "none";
             console.info('AD Blocked ([id^="feed_subtitle_"] > span:nth-child(2))', [e]);
             return true;
