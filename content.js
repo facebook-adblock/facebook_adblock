@@ -68,10 +68,10 @@
         // The new Facebook layout has "Sponsored" or "SpSonSsoSredS" in ALL the subtitle
         // The non sponsored posts will have a special class that will hide "Sponsored" text
         // This filter exploits this.
-        var spaceNextToSponsorTag = e.querySelector('[id^="feed_subtitle_"] > span:nth-child(2)');
+        var spaceNextToSponsorTag = e.querySelector('[id*="feed_subtitle"] span[role="presentation"]');
         if (spaceNextToSponsorTag !== null && window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
             e.style.display = "none";
-            console.info('AD Blocked ([id^="feed_subtitle_"] > span:nth-child(2))', [e]);
+            console.info('AD Blocked ([id*="feed_subtitle"] span[role="presentation"])', [e]);
             return true;
         }
 
