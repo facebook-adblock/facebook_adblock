@@ -68,10 +68,10 @@
         // The new Facebook layout has "Sponsored" or "SpSonSsoSredS" in ALL the subtitle
         // The non sponsored posts will have a special class that will hide "Sponsored" text
         // This filter exploits this.
-        var spaceNextToSponsorTag = e.querySelector('[id*="feed_subtitle"] span[role="presentation"]');
+        var spaceNextToSponsorTag = e.querySelector('h5 + [id*="feed_subtitle"] span[role="presentation"]');
         if (spaceNextToSponsorTag !== null && window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
             e.style.display = "none";
-            console.info('AD Blocked ([id*="feed_subtitle"] span[role="presentation"])', [e]);
+            console.info('AD Blocked (h5 + [id*="feed_subtitle"] span[role="presentation"])', [e]);
             return true;
         }
 
@@ -89,7 +89,7 @@
 
         // if e contains anything in blacklist, then hide.
         // a[data-hovercard][href*="hc_ref=ADS"] from https://github.com/uBlockOrigin/uAssets/issues/233
-        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[role="button"][target="_blank"]'];
+        var blacklist = ['s', '._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[role="button"][target="_blank"]'];
         blacklist.some(function(query) {
             if (e.querySelector(query) !== null) {
                 e.style.display = "none";
