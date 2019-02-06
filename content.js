@@ -74,12 +74,6 @@
             console.info('AD Blocked (h5 + [id*="feed_sub_title"] span[role="presentation"]:first-of-type])', [e]);
             return true;
         }
-        var spaceNextToSponsorTag = e.querySelector('h5 + [id*="feed_subtitle"] span[role="presentation"]');
-        if (spaceNextToSponsorTag !== null && window.getComputedStyle(spaceNextToSponsorTag).display !== "none") {
-            e.style.display = "none";
-            console.info('AD Blocked (h5 + [id*="feed_subtitle"] span[role="presentation"])', [e]);
-            return true;
-        }
 
         // if e contains anything in whitelist, then ignore.
         var whitelist = [];
@@ -96,7 +90,7 @@
         // if e contains anything in blacklist, then hide.
         // a[data-hovercard][href*="hc_ref=ADS"] from https://github.com/uBlockOrigin/uAssets/issues/233
         // a[role="button"][target="_blank"] is used for good post now too.
-        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]'];
+        var blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[rel~="noopener"][data-lynx-mode="async"]'];
         blacklist.some(function(query) {
             if (e.querySelector(query) !== null) {
                 e.style.display = "none";
