@@ -11,7 +11,7 @@ An open-source Ad Blocker for Facebook™ Chrome extension
 
 This extension is 100% free and open source.
 
-Install it here, https://chrome.google.com/webstore/detail/facebook-adblock/kinpgphmiekapnpbmobneleaiemkefag
+Install it here, https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/kinpgphmiekapnpbmobneleaiemkefag.svg)](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kinpgphmiekapnpbmobneleaiemkefag.svg)](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag)
