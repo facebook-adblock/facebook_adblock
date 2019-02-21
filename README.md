@@ -1,8 +1,7 @@
-
-
 # facebook_adblock
 
 An open-source Ad Blocker for Facebook™ Chrome extension
+
 - Blocks both suggested posts and sidebar ads
 - Works with both Chrome for Desktop and Mobile
 - Does not slow down your computer
