@@ -3,10 +3,9 @@
 An open-source Ad Blocker for Facebook™ Chrome extension
 
 - Blocks both suggested posts and sidebar ads
-- Works with both Chrome for Desktop and Mobile
 - Does not slow down your computer
 - Does not track/read your Facebook activity, or other websites
-- Only has about 100 lines of code, and no external dependency! https://github.com/tiratatp/facebook_adblock/blob/master/content.js
+- Only has about 100 lines of code, and no external dependency! https://github.com/tiratatp/facebook_adblock/blob/master/src/main.js
 
 This extension is 100% free and open source.
 
