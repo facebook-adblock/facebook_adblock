@@ -663,8 +663,20 @@
 	    return true; // has ad
 	  }
 
-	  const possibleSponsoredTags = e.querySelectorAll('div[id^="feed_sub_title"] > :first-child');
-	  possibleSponsoredTags.forEach(t => {
+	  const possibleSponsoredTags1 = e.querySelectorAll('div[id^="feed_sub_title"] > :first-child');
+	  possibleSponsoredTags1.forEach(t => {
+	    const visibleText = getVisibleText(t).join('');
+
+	    if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
+	      e.style.display = 'none';
+	      console.info('AD Blocked (getVisibleText())', [e]);
+	      return true;
+	    }
+
+	    return false;
+	  });
+	  const possibleSponsoredTags2 = e.querySelectorAll('div[data-testid="story-subtitle"] > :first-child');
+	  possibleSponsoredTags2.forEach(t => {
 	    const visibleText = getVisibleText(t).join('');
 
 	    if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
