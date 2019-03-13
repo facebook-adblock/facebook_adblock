@@ -611,6 +611,7 @@
 	'贊助', // Chinese (Taiwan)
 	'Sponsorisé', // French
 	'Gesponsert'];
+	const possibleSponsoredTextQueries = ['div[id^="feed_sub_title"] > :first-child', 'div[data-testid="story-subtitle"] > :first-child', 'div[id^="feedsubtitle"] > :first-child'];
 
 	function isHidden(e) {
 	  const style = window.getComputedStyle(e);
@@ -663,31 +664,21 @@
 	    return true; // has ad
 	  }
 
-	  const possibleSponsoredTags1 = e.querySelectorAll('div[id^="feed_sub_title"] > :first-child');
-	  possibleSponsoredTags1.forEach(t => {
-	    const visibleText = getVisibleText(t).join('');
+	  return possibleSponsoredTextQueries.some(query => {
+	    const result = e.querySelectorAll(query);
+	    return [...result].some(t => {
+	      const visibleText = getVisibleText(t).join('');
+	      console.log('Here: ', visibleText);
 
-	    if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
-	      e.style.display = 'none';
-	      console.info('AD Blocked (getVisibleText())', [e]);
-	      return true;
-	    }
+	      if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
+	        e.style.display = 'none';
+	        console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
+	        return true;
+	      }
 
-	    return false;
+	      return false;
+	    });
 	  });
-	  const possibleSponsoredTags2 = e.querySelectorAll('div[data-testid="story-subtitle"] > :first-child');
-	  possibleSponsoredTags2.forEach(t => {
-	    const visibleText = getVisibleText(t).join('');
-
-	    if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
-	      e.style.display = 'none';
-	      console.info('AD Blocked (getVisibleText())', [e]);
-	      return true;
-	    }
-
-	    return false;
-	  });
-	  return false;
 	}
 
 	let feedObserver = null;
