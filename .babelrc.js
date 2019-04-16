@@ -8,6 +8,7 @@ module.exports = function(api) {
         {
           useBuiltIns: 'usage',
           debug: true,
+          corejs: 3
         },
       ],
     ],
