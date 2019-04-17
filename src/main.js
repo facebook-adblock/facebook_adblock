@@ -29,6 +29,7 @@ const sponsoredTexts = [
 
 const possibleSponsoredTextQueries = [
   'div[id^="feed_sub_title"] > :first-child',
+  'div[id^="feed__sub__title"] > :first-child',
   'div[data-testid="story-subtitle"] > :first-child',
   'div[id^="feedsubtitle"] > :first-child',
 ];
