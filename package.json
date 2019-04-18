@@ -26,7 +26,8 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "@babel/polyfill": "^7.2.5"
+    "core-js": "^3.0.1",
+    "regenerator-runtime": "^0.13.2"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
