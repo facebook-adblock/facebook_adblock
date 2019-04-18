@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Ad Blocker for Facebook™",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "An open-source Ad Blocker for Facebook™ Chrome extension",
   "icons": {
     "128": "icon128.png"

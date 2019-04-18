@@ -28,10 +28,10 @@ const sponsoredTexts = [
 ];
 
 const possibleSponsoredTextQueries = [
+  'div[id^="feedsubtitle"] > :first-child',
   'div[id^="feed_sub_title"] > :first-child',
   'div[id^="feed__sub__title"] > :first-child',
   'div[data-testid="story-subtitle"] > :first-child',
-  'div[id^="feedsubtitle"] > :first-child',
 ];
 
 function isHidden(e) {
@@ -94,7 +94,6 @@ function hideIfSponsored(e) {
     const result = e.querySelectorAll(query);
     return [...result].some((t) => {
       const visibleText = getVisibleText(t).join('');
-      console.log('Here: ', visibleText);
       if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
         e.style.display = 'none';
         console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
