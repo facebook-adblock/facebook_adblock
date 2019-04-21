@@ -697,18 +697,20 @@
   // a[role="button"][target="_blank"] is used for good post now too.
 
   const blacklist = ['._m8c', '.uiStreamSponsoredLink', 'a[data-hovercard][href*="hc_ref=ADS"]', 'a[role="button"][rel~="noopener"][data-lynx-mode="async"]'];
-  const sponsoredTexts = ['Sponsored', 'प्रायोजित', // Hindi
-  'Patrocinado', // Portuguese (Brazil)
-  'Bersponsor', // Indonesian
-  'Publicidad', // Spanish
+  const sponsoredTexts = ['Sponsored', 'مُموَّل', // Arabic
+  '赞助内容', // Chinese Simplified
+  '贊助', // Chinese (Traditional)
+  'Sponzorováno', // Czech
   'May Sponsor', // Filipino
-  'Được tài trợ', // Vietnamese
+  'Sponsorisé', // French
+  'Gesponsert', // German
+  'प्रायोजित', // Hindi
+  'Bersponsor', // Indonesian
+  'Patrocinado', // Portuguese (Brazil)
+  'Publicidad', // Spanish
   'ได้รับการสนับสนุน', // Thai
   'Sponsorlu', // Turkish
-  '赞助内容', // Chinese Simplified
-  '贊助', // Chinese (Taiwan)
-  'Sponsorisé', // French
-  'Gesponsert'];
+  'Được tài trợ'];
   const possibleSponsoredTextQueries = ['div[id^="feedsubtitle"] > :first-child', 'div[id^="feed_sub_title"] > :first-child', 'div[id^="feed__sub__title"] > :first-child', 'div[data-testid="story-subtitle"] > :first-child'];
 
   function isHidden(e) {

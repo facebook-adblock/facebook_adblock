@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 // if e contains anything in whitelist, then ignore.
 const whitelist = [];
 
@@ -13,18 +14,20 @@ const blacklist = [
 
 const sponsoredTexts = [
   'Sponsored',
-  'प्रायोजित', // Hindi
-  'Patrocinado', // Portuguese (Brazil)
-  'Bersponsor', // Indonesian
-  'Publicidad', // Spanish
-  'May Sponsor', // Filipino
-  'Được tài trợ', // Vietnamese
-  'ได้รับการสนับสนุน', // Thai
-  'Sponsorlu', // Turkish
+  'مُموَّل', // Arabic
   '赞助内容', // Chinese Simplified
-  '贊助', // Chinese (Taiwan)
+  '贊助', // Chinese (Traditional)
+  'Sponzorováno', // Czech
+  'May Sponsor', // Filipino
   'Sponsorisé', // French
   'Gesponsert', // German
+  'प्रायोजित', // Hindi
+  'Bersponsor', // Indonesian
+  'Patrocinado', // Portuguese (Brazil)
+  'Publicidad', // Spanish
+  'ได้รับการสนับสนุน', // Thai
+  'Sponsorlu', // Turkish
+  'Được tài trợ', // Vietnamese
 ];
 
 const possibleSponsoredTextQueries = [
