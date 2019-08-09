@@ -51,6 +51,10 @@ function isHidden(e) {
   return false;
 }
 
+function getTextFromElement(e) {
+  return e.innerText === '' ? e.dataset.content : e.innerText;
+}
+
 function getVisibleText(e) {
   if (isHidden(e)) {
     // stop if this is hidden
@@ -65,7 +69,7 @@ function getVisibleText(e) {
       .flat();
   }
   // we have found the real text
-  return e.innerText;
+  return getTextFromElement(e);
 }
 
 function hideIfSponsored(e) {

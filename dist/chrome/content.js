@@ -196,7 +196,7 @@
 	(module.exports = function (key, value) {
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.1.3',
+	  version: '3.2.0',
 	  mode:  'global',
 	  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 	});
@@ -744,6 +744,10 @@
 	  return false;
 	}
 
+	function getTextFromElement(e) {
+	  return e.innerText === '' ? e.dataset.content : e.innerText;
+	}
+
 	function getVisibleText(e) {
 	  if (isHidden(e)) {
 	    // stop if this is hidden
@@ -758,7 +762,7 @@
 	  } // we have found the real text
 
 
-	  return e.innerText;
+	  return getTextFromElement(e);
 	}
 
 	function hideIfSponsored(e) {
