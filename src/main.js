@@ -36,6 +36,7 @@ const possibleSponsoredTextQueries = [
   'div[id^="feed__sub__title"] > :first-child',
   'div[data-testid$="story-subtitle"] > :first-child',
   'div[data-testid$="story-subtilte"] > :first-child',
+  'div[data-testid$="story--subtilte"] > :first-child',
 ];
 
 function isHidden(e) {
