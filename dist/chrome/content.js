@@ -196,7 +196,7 @@
 	(module.exports = function (key, value) {
 	  return store[key] || (store[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.2.0',
+	  version: '3.2.1',
 	  mode:  'global',
 	  copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
 	});

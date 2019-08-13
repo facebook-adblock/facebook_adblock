@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "An open-source Ad Blocker for Facebook™ Chrome extension",
   "main": "content.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "copy": "cp static/* dist/chrome",
-    "release": "npm run build & npm run copy"
+    "release": "npm run build && npm run copy"
   },
   "repository": {
     "type": "git",
@@ -26,13 +26,13 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "core-js": "^3.2.0",
+    "core-js": "^3.2.1",
     "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "eslint": "^5.16.0",
+    "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "^2.18.2",
     "rollup": "^1.19.4",
