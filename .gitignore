@@ -1,4 +1,4 @@
 *.pem
 *.crx
 node_modules
-chrome.zip
+dist/

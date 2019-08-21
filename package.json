@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.6.10",
+  "version": "1.6.11",
   "description": "An open-source Ad Blocker for Facebook™ Chrome extension",
   "main": "content.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "copy": "cp static/* dist/chrome",
-    "release": "npm run build && npm run copy"
+    "release:chrome": "cd dist && zip -r chrome.zip chrome",
+    "release": "npm run build && npm run copy && npm run release:chrome"
   },
   "repository": {
     "type": "git",
@@ -32,13 +33,14 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "eslint": "^6.1.0",
+    "eslint": "^6.2.1",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "^2.18.2",
     "rollup": "^1.19.4",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.2",
-    "rollup-plugin-node-resolve": "^5.2.0"
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "web-ext": "^3.1.1"
   },
   "eslintIgnore": [
     "content.js"
