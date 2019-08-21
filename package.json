@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf dist/",
-    "prebuild:js": "mkdir -p dist/src",
+    "prebuild": "mkdir -p dist/src",
     "build:js": "rollup -c",
     "build:static": "cp static/* dist/src",
     "build": "npm run build:js && npm run build:static",
