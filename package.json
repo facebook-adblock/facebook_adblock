@@ -1,15 +1,19 @@
 {
   "name": "facebook_adblock",
   "version": "1.6.11",
-  "description": "An open-source Ad Blocker for Facebook™ Chrome extension",
+  "description": "An open-source Ad Blocker for Facebook™ extension",
   "main": "content.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "watch": "rollup -c -w",
-    "copy": "cp static/* dist/chrome",
-    "release:chrome": "cd dist && zip -r chrome.zip chrome",
-    "release": "npm run build && npm run copy && npm run release:chrome"
+    "clean": "rm -rf dist/",
+    "prebuild:js": "mkdir -p dist/src",
+    "build:js": "rollup -c",
+    "build:static": "cp static/* dist/src",
+    "build": "npm run build:js && npm run build:static",
+    "release:chrome": "cd dist && zip -r chrome.zip src",
+    "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
+    "prerelease": "npm run build",
+    "release": "npm run release:chrome && npm run release:firefox"
   },
   "repository": {
     "type": "git",

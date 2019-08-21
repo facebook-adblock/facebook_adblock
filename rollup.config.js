@@ -5,7 +5,7 @@ const resolve = require('rollup-plugin-node-resolve');
 module.exports = {
   input: 'src/main.js',
   output: {
-    file: 'dist/chrome/content.js',
+    file: 'dist/src/content.js',
     format: 'iife', // immediately-invoked function expression — suitable for <script> tags
   },
   plugins: [
