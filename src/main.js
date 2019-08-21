@@ -27,6 +27,7 @@ const sponsoredTexts = [
   'ได้รับการสนับสนุน', // Thai
   'Sponsorlu', // Turkish
   'Được tài trợ', // Vietnamese
+  'Gesponsord', // Dutch
 ];
 
 const possibleSponsoredTextQueries = [
