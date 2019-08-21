@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 // if e contains anything in whitelist, then ignore.
 const whitelist = [];
 
