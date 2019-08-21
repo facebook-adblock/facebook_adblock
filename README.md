@@ -1,6 +1,6 @@
 # facebook_adblock
 
-An open-source Ad Blocker for Facebook™ Chrome extension
+An open-source Ad Blocker for Facebook™
 
 - Blocks both suggested posts and sidebar ads
 - Does not slow down your computer
@@ -9,14 +9,19 @@ An open-source Ad Blocker for Facebook™ Chrome extension
 
 This extension is 100% free and open source.
 
-Install it here, https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag
+## Installation
+
+### Chrome
+
+https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag
 
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/kinpgphmiekapnpbmobneleaiemkefag.svg)](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/kinpgphmiekapnpbmobneleaiemkefag.svg)](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/kinpgphmiekapnpbmobneleaiemkefag.svg)](https://chrome.google.com/webstore/detail/ad-blocker-for-facebook/kinpgphmiekapnpbmobneleaiemkefag)
 
-We now have a Firefox version here (Thanks to [@yan12125](https://github.com/yan12125) :+1:),
-https://addons.mozilla.org/en-US/firefox/addon/fb_ad_block/
+### Firefox
+
+https://addons.mozilla.org/en-US/firefox/addon/fb_ad_block/ (Thanks to [Chih-Hsuan Yen](https://github.com/yan12125))
 
 [![Mozilla Add-on](https://img.shields.io/amo/v/fb_ad_block.svg)](https://addons.mozilla.org/en-US/firefox/addon/fb_ad_block/)
 [![Mozilla Add-on](https://img.shields.io/amo/users/fb_ad_block.svg)](https://addons.mozilla.org/en-US/firefox/addon/fb_ad_block/)
