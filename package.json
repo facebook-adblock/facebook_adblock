@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.6.12",
+  "version": "1.6.13",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/content.js",
   "scripts": {
@@ -40,7 +40,7 @@
     "eslint": "^6.2.1",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "^2.18.2",
-    "rollup": "^1.19.4",
+    "rollup": "^1.20.0",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
