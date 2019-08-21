@@ -105,7 +105,7 @@ function hideIfSponsored(e) {
     const result = e.querySelectorAll(query);
     return [...result].some((t) => {
       const visibleText = getVisibleText(t).join('');
-      if (sponsoredTexts.some(sponsoredText => visibleText.indexOf(sponsoredText) !== -1)) {
+      if (sponsoredTexts.some((sponsoredText) => visibleText.indexOf(sponsoredText) !== -1)) {
         e.style.display = 'none';
         console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
         return true;
