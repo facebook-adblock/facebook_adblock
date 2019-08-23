@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.6.13",
+  "version": "1.6.14",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/content.js",
   "scripts": {
@@ -13,7 +13,9 @@
     "prerelease": "npm run build",
     "release:chrome": "cd dist && zip -r chrome.zip src",
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
-    "release": "npm run release:chrome && npm run release:firefox"
+    "release": "npm run release:chrome && npm run release:firefox",
+    "presign": "npm run release",
+    "sign": "web-ext sign --source-dir dist/src --overwrite-dest --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\""
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,7 @@
     "eslint": "^6.2.1",
     "eslint-config-airbnb-base": "latest",
     "eslint-plugin-import": "^2.18.2",
-    "rollup": "^1.20.0",
+    "rollup": "^1.20.1",
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-node-resolve": "^5.2.0",
