@@ -25,11 +25,11 @@ const sponsoredTexts = [
   'Bersponsor', // Indonesian
   'Sponsorizzato', // Italian
   'Patrocinado', // Portuguese (Brazil)
+  'Реклама', // Russian
   'Publicidad', // Spanish
   'ได้รับการสนับสนุน', // Thai
   'Sponsorlu', // Turkish
   'Được tài trợ', // Vietnamese
-  'Реклама', // Russian
 ];
 
 const possibleSponsoredTextQueries = [
