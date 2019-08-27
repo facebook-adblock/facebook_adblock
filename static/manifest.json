@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Ad Blocker for Facebook™",
-  "version": "1.6.15",
+  "version": "1.6.16",
   "description": "An open-source Ad Blocker for Facebook™",
   "icons": {
     "48": "icon48.png",
