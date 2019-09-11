@@ -21,6 +21,7 @@ const sponsoredTexts = [
   'May Sponsor', // Filipino
   'Sponsorisé', // French
   'Gesponsert', // German
+  'ממומן', // Hebrew
   'प्रायोजित', // Hindi
   'Bersponsor', // Indonesian
   'Sponsorizzato', // Italian
