@@ -17,6 +17,7 @@ const sponsoredTexts = [
   '赞助内容', // Chinese Simplified
   '贊助', // Chinese (Traditional)
   'Sponzorováno', // Czech
+  'Sponzorované', // Slovak
   'Gesponsord', // Dutch
   'May Sponsor', // Filipino
   'Sponsorisé', // French
