@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Ad Blocker for Facebook™",
-  "version": "1.6.18",
+  "version": "1.6.19",
   "description": "An open-source Ad Blocker for Facebook™",
   "icons": {
     "48": "icon48.png",
@@ -11,10 +11,7 @@
   "homepage_url": "https://github.com/tiratatp/facebook_adblock",
   "content_scripts": [
     {
-      "matches": [
-        "*://*.facebook.com/*"
-        "*://*.facebookcorewwwi.onion/*"
-      ],
+      "matches": ["*://*.facebook.com/*", "*://*.facebookcorewwwi.onion/*"],
       "css": ["content.css"],
       "js": ["content.js"],
       "run_at": "document_idle"
