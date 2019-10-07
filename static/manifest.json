@@ -11,7 +11,10 @@
   "homepage_url": "https://github.com/tiratatp/facebook_adblock",
   "content_scripts": [
     {
-      "matches": ["*://*.facebook.com/*"],
+      "matches": [
+        "*://*.facebook.com/*"
+        "*://*.facebookcorewwwi.onion/*"
+      ],
       "css": ["content.css"],
       "js": ["content.js"],
       "run_at": "document_idle"
