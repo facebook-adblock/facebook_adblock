@@ -7,10 +7,12 @@
 .rhcFooter: ads in pictures (photo.php) when there is not many comments;
 #pagelet_ego_pane: sidebar ads
 #MRoot article[data-xt]: mobile suggested posts
+._1lil._2pie._3-8y: marketplace ads
 */
 .rhcFooter,
 #pagelet_ego_pane,
-#MRoot article[data-xt] {
+#MRoot article[data-xt],
+._1lil._2pie._3-8y {
   display: none !important;
 }
 
