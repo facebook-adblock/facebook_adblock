@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/content.js",
   "scripts": {

@@ -14,7 +14,7 @@ const blacklist = [
 const sponsoredTexts = [
   'Sponsored',
   'مُموَّل', // Arabic
-  '赞助内容', // Chinese Simplified
+  '赞助内容', // Chinese (Simplified)
   '贊助', // Chinese (Traditional)
   'Sponzorováno', // Czech
   'Gesponsord', // Dutch
@@ -25,6 +25,7 @@ const sponsoredTexts = [
   'प्रायोजित', // Hindi
   'Bersponsor', // Indonesian
   'Sponsorizzato', // Italian
+  'Sponsorowane', // Polish
   'Patrocinado', // Portuguese (Brazil)
   'Реклама', // Russian
   'Sponzorované', // Slovak
