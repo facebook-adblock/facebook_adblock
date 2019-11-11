@@ -4,16 +4,16 @@ module.exports = function(api) {
   return {
     presets: [
       [
-        '@babel/preset-env',
+        "@babel/preset-env",
         {
-          useBuiltIns: 'usage',
+          useBuiltIns: "usage",
           corejs: {
             version: 3,
-            proposals: true,
+            proposals: true
           },
-          debug: true,
-        },
-      ],
-    ],
+          debug: true
+        }
+      ]
+    ]
   };
 };
