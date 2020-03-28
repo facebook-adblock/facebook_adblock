@@ -8,7 +8,7 @@ const blacklist = [
   "._m8c",
   ".uiStreamSponsoredLink",
   'a[data-hovercard][href*="hc_ref=ADS"]',
-  'a[role="button"][rel~="noopener"][data-lynx-mode="async"]'
+  'a[role="button"][rel~="noopener"][data-lynx-mode="async"]',
 ];
 
 const sponsoredTexts = [
@@ -32,19 +32,19 @@ const sponsoredTexts = [
   "Publicidad", // Spanish
   "ได้รับการสนับสนุน", // Thai
   "Sponsorlu", // Turkish
-  "Được tài trợ" // Vietnamese
+  "Được tài trợ", // Vietnamese
 ];
 
 const possibleSponsoredTextQueries = [
   'div[id^="feedsubtitle"] > :first-child',
   'div[id^="feed_sub_title"] > :first-child',
   'div[id^="feed__sub__title"] > :first-child',
-  'div[data-testid$="feedsubtitle"] > :first-child',
+  'div[id^="feedlabel"] > :first-child',
   'div[data-testid$="storysub-title"] > :first-child',
-  'div[data-testid$="story-subtitle"] > :first-child',
+  'div[data-testid*="subtitle"] > :first-child',
   'div[data-testid$="story-subtilte"] > :first-child',
   'div[data-testid$="story--subtilte"] > :first-child',
-  'div[data-testid="testid-story--label"] > :first-child'
+  'div[data-testid*="label"] > :first-child',
 ];
 
 function isHidden(e) {
@@ -72,10 +72,7 @@ function getVisibleText(e) {
   const children = e.querySelectorAll(":scope > *");
   if (children.length !== 0) {
     // more level => recursive
-    return Array.prototype.slice
-      .call(children)
-      .map(getVisibleText)
-      .flat();
+    return Array.prototype.slice.call(children).map(getVisibleText).flat();
   }
   // we have found the real text
   return getTextFromElement(e);
@@ -83,7 +80,7 @@ function getVisibleText(e) {
 
 function hideIfSponsored(e) {
   if (
-    whitelist.some(query => {
+    whitelist.some((query) => {
       if (e.querySelector(query) !== null) {
         console.info(`Ignored (${query})`, [e]);
         return true;
@@ -95,7 +92,7 @@ function hideIfSponsored(e) {
   }
 
   if (
-    blacklist.some(query => {
+    blacklist.some((query) => {
       if (e.querySelector(query) !== null) {
         e.style.display = "none";
         console.info(`AD Blocked (${query})`, [e]);
@@ -107,13 +104,13 @@ function hideIfSponsored(e) {
     return true; // has ad
   }
 
-  return possibleSponsoredTextQueries.some(query => {
+  return possibleSponsoredTextQueries.some((query) => {
     const result = e.querySelectorAll(query);
     return [...result].some(t => {
       const visibleText = getVisibleText(t).join("");
       if (
         sponsoredTexts.some(
-          sponsoredText => visibleText.indexOf(sponsoredText) !== -1
+          (sponsoredText) => visibleText.indexOf(sponsoredText) !== -1
         )
       ) {
         e.style.display = "none";
@@ -133,8 +130,8 @@ function onPageChange() {
     feed
       .querySelectorAll('div[id^="hyperfeed_story_id_"]')
       .forEach(hideIfSponsored);
-    feedObserver = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
+    feedObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
         if (mutation.target.id.startsWith("hyperfeed_story_id_")) {
           hideIfSponsored(mutation.target);
         }
@@ -142,7 +139,7 @@ function onPageChange() {
     });
     feedObserver.observe(feed, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
     console.info("Monitoring", [feed]);
     return;
@@ -152,8 +149,8 @@ function onPageChange() {
   if (feed !== null) {
     // if the user change page to https://www.facebook.com/groups/*
     feed.querySelectorAll('div[id^="mall_post_"]').forEach(hideIfSponsored);
-    feedObserver = new MutationObserver(mutations => {
-      mutations.forEach(mutation => {
+    feedObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
         mutation.target
           .querySelectorAll('div[id^="mall_post_"]')
           .forEach(hideIfSponsored);
@@ -161,7 +158,7 @@ function onPageChange() {
     });
     feedObserver.observe(feed, {
       childList: true,
-      subtree: true
+      subtree: true,
     });
     console.info("Monitoring", [feed]);
   }
@@ -179,7 +176,7 @@ if (fbContent !== undefined) {
   // Facebook uses ajax to load new content so
   // we need this to watch for page change
   fbObserver.observe(fbContent, {
-    childList: true
+    childList: true,
   });
 }
 
