@@ -21,6 +21,7 @@ const sponsoredTexts = [
   "May Sponsor", // Filipino
   "Sponsorisé", // French
   "Gesponsert", // German
+  "Χορηγούμενη", // Greek
   "ממומן", // Hebrew
   "प्रायोजित", // Hindi
   "Bersponsor", // Indonesian
@@ -82,6 +83,7 @@ function hideIfSponsored(e) {
   if (
     whitelist.some((query) => {
       if (e.querySelector(query) !== null) {
+        e.dataset.blocked='whitelist'
         console.info(`Ignored (${query})`, [e]);
         return true;
       }
@@ -95,6 +97,7 @@ function hideIfSponsored(e) {
     blacklist.some((query) => {
       if (e.querySelector(query) !== null) {
         e.style.display = "none";
+        e.dataset.blocked='blacklist'
         console.info(`AD Blocked (${query})`, [e]);
         return true;
       }
@@ -102,6 +105,15 @@ function hideIfSponsored(e) {
     })
   ) {
     return true; // has ad
+  }
+
+  if ( // If it does NOT have a timestamp due to "Sponsored" label
+    !e.querySelector('div[id^=fbfeed_sub_header_id] abbr')
+  ) {
+    e.style.display='none';
+    e.dataset.blocked='sponsored'
+    console.info(`AD Blocked (!div[id^=fbfeed_sub_header_id] abbr)`, [e]);
+    return true;
   }
 
   return possibleSponsoredTextQueries.some((query) => {
@@ -114,6 +126,7 @@ function hideIfSponsored(e) {
         )
       ) {
         e.style.display = "none";
+        e.dataset.blocked='sponsored'
         console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
         return true;
       }
