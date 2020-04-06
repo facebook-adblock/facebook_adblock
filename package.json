@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.7.4",
+  "version": "1.7.5",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/content.js",
   "scripts": {
@@ -44,8 +44,8 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
-    "prettier": "^2.0.2",
-    "rollup": "^2.2.0",
+    "prettier": "^2.0.4",
+    "rollup": "^2.3.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
