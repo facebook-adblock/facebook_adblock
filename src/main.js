@@ -107,15 +107,6 @@ function hideIfSponsored(e) {
     return true; // has ad
   }
 
-  if ( // If it does NOT have a timestamp due to "Sponsored" label
-    !e.querySelector('div[id^=fbfeed_sub_header_id] abbr')
-  ) {
-    e.style.display='none';
-    e.dataset.blocked='sponsored'
-    console.info(`AD Blocked (!div[id^=fbfeed_sub_header_id] abbr)`, [e]);
-    return true;
-  }
-
   return possibleSponsoredTextQueries.some((query) => {
     const result = e.querySelectorAll(query);
     return [...result].some(t => {
