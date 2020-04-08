@@ -46,6 +46,8 @@ const possibleSponsoredTextQueries = [
   'div[data-testid$="story-subtilte"] > :first-child',
   'div[data-testid$="story--subtilte"] > :first-child',
   'div[data-testid*="label"] > :first-child',
+  'div[id^="fbfeed_sub_header_id"] > :nth-child(3)',
+  'a[role="button"][aria-labelledby]',
 ];
 
 function isHidden(e) {
