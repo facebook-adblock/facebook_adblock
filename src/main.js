@@ -120,7 +120,7 @@ function hideIfSponsored(e) {
       ) {
         e.style.display = "none";
         e.dataset.blocked='sponsored'
-        console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
+        console.info(`AD Blocked (${query}, getVisibleText(${visibleText}))`, [e]);
         return true;
       }
       return false;
@@ -184,6 +184,7 @@ if (fbContent !== undefined) {
   fbObserver.observe(fbContent, {
     childList: true,
   });
+  console.info("Monitoring page changes", [fbContent]);
 }
 
 // cleanup
