@@ -48,6 +48,7 @@ const possibleSponsoredTextQueries = [
   'div[data-testid*="label"] > :first-child',
   'div[id^="fbfeed_sub_header_id"] > :nth-child(3)',
   'a[role="button"][aria-labelledby]',
+  'a[role="link"] > span[aria-labelledby]',
 ];
 
 function isHidden(e) {
@@ -56,7 +57,8 @@ function isHidden(e) {
     style.display === "none" ||
     style.opacity === "0" ||
     style.fontSize === "0px" ||
-    style.visibility === "hidden"
+    style.visibility === "hidden" ||
+    style.position === "absolute"
   ) {
     return true;
   }
@@ -64,18 +66,27 @@ function isHidden(e) {
 }
 
 function getTextFromElement(e) {
-  return e.innerText === "" ? e.dataset.content : e.innerText;
+  return (e.innerText === "" ? e.dataset.content : e.innerText) || "";
+}
+
+function getTextFromContainerElement(e) {
+  // we only need the data-content of a container element, or any direct text inside it
+  return e.dataset.content || Array.prototype.filter.call(e.childNodes, (element) => {
+      return element.nodeType === Node.TEXT_NODE;
+  }).map((element) => {
+      return element.textContent;
+  }).join("");
 }
 
 function getVisibleText(e) {
   if (isHidden(e)) {
     // stop if this is hidden
-    return [];
+    return "";
   }
   const children = e.querySelectorAll(":scope > *");
   if (children.length !== 0) {
     // more level => recursive
-    return Array.prototype.slice.call(children).map(getVisibleText).flat();
+    return getTextFromContainerElement(e) + Array.prototype.slice.call(children).map(getVisibleText).flat().join("");
   }
   // we have found the real text
   return getTextFromElement(e);
@@ -112,7 +123,7 @@ function hideIfSponsored(e) {
   return possibleSponsoredTextQueries.some((query) => {
     const result = e.querySelectorAll(query);
     return [...result].some((t) => {
-      const visibleText = getVisibleText(t).join("");
+      const visibleText = getVisibleText(t);
       if (
         sponsoredTexts.some(
           (sponsoredText) => visibleText.indexOf(sponsoredText) !== -1
@@ -169,6 +180,97 @@ function onPageChange() {
       subtree: true,
     });
     console.info("Monitoring", [feed]);
+    return;
+  }
+
+  // FB5 design
+  // there's a feed div that we don't monitor yet
+  feed = document.querySelector("div[role=feed]:not([data-adblock-monitored])");
+  if (feed !== null) {
+    setFB5FeedObserver();
+    return;
+  }
+  // there's a feed loading placeholder
+  feed = document.getElementById("suspended-feed");
+  if (feed !== null) {
+    setFB5FeedObserver();
+    return;
+  }
+  // No new feed was detected
+  // Cleanup observer when there's no feed monitored left in DOM
+  if (feedObserver !== null && document.querySelector("div[role=feed][data-adblock-monitored]") === null) {
+    feedObserver.disconnect();
+  }
+}
+
+// wait for and observe FB5 feed element
+function setFB5FeedObserver() {
+  // We are expecting to find a new feed div
+  let feed = document.querySelector("div[role=feed]:not([data-adblock-monitored])");
+  if (feed !== null) {
+    // check existing posts
+    feed
+      .querySelectorAll('div[data-pagelet^="FeedUnit_"]')
+      .forEach(hideIfSponsored);
+
+    let feedContainer = feed.parentNode;
+    // flag this feed as monitored
+    feed.dataset.adblockMonitored = true;
+    feedObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        // check if feed was reloaded without changing page
+        if (mutation.target === feedContainer && mutation.addedNodes.length > 0) {
+          feedObserver.disconnect();
+          // check again for the new feed. Since the DOM has just changed, we
+          // want to wait a bit and start looking for the new div after it was
+          // rendered. We put our method at the end of the current queue stack 
+          setTimeout(setFB5FeedObserver, 0);
+        }
+        // new feed posts added
+        if (mutation.target === feed && mutation.addedNodes.length > 0) {
+          mutation.addedNodes.forEach((node) => {
+            if (node.dataset.pagelet && node.dataset.pagelet.startsWith("FeedUnit_")) {
+              hideIfSponsored(node);
+            }
+          });
+        }
+      });
+    });
+    // check for new feed posts
+    feedObserver.observe(feed, {
+      childList: true,
+    });
+    // check if the feed is replaced
+    feedObserver.observe(feedContainer, {
+      childList: true,
+    });
+    console.info("Monitoring feed updates", [feed]);
+  } else {
+    // no feed div was available yet in DOM. will check again
+    setTimeout(setFB5FeedObserver, 1000);
+  }
+}
+
+// wait for and observe FB5 page element
+function setFB5PageObserver() {
+  // We are expecting to find a page div
+  fbContent = document.querySelector("div[data-pagelet=root] div[data-pagelet=page]");
+  // make sure there's a page element
+  if (fbContent !== null) {
+    // trigger first page initiation
+    onPageChange();
+
+    // Facebook uses ajax to load new content so
+    // we need to observe the container of the page
+    // for any page changes
+    let fbContentContainer = fbContent.parentNode;
+    fbObserver.observe(fbContentContainer, {
+      childList: true,
+    });
+    console.info("Monitoring page changes", [fbContent]);
+  } else {
+    // no page div was available yet in DOM. will check again
+    setTimeout(setFB5PageObserver, 1000);
   }
 }
 
@@ -187,6 +289,12 @@ if (fbContent !== undefined) {
     childList: true,
   });
   console.info("Monitoring page changes", [fbContent]);
+} else {
+  // check if it's FB5 design
+  fbContent = document.getElementById("mount_0_0");
+  if (fbContent !== null) {
+    setFB5PageObserver();
+  }
 }
 
 // cleanup
