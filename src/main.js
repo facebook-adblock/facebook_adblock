@@ -46,6 +46,8 @@ const possibleSponsoredTextQueries = [
   'div[data-testid$="story-subtilte"] > :first-child',
   'div[data-testid$="story--subtilte"] > :first-child',
   'div[data-testid*="label"] > :first-child',
+  'div[id^="fbfeed_sub_header_id"] > :nth-child(3)',
+  'a[role="button"][aria-labelledby]',
 ];
 
 function isHidden(e) {
@@ -83,7 +85,7 @@ function hideIfSponsored(e) {
   if (
     whitelist.some((query) => {
       if (e.querySelector(query) !== null) {
-        e.dataset.blocked='whitelist'
+        e.dataset.blocked = 'whitelist';
         console.info(`Ignored (${query})`, [e]);
         return true;
       }
@@ -97,7 +99,7 @@ function hideIfSponsored(e) {
     blacklist.some((query) => {
       if (e.querySelector(query) !== null) {
         e.style.display = "none";
-        e.dataset.blocked='blacklist'
+        e.dataset.blocked = 'blacklist';
         console.info(`AD Blocked (${query})`, [e]);
         return true;
       }
@@ -117,8 +119,8 @@ function hideIfSponsored(e) {
         )
       ) {
         e.style.display = "none";
-        e.dataset.blocked='sponsored'
-        console.info(`AD Blocked (${query}, getVisibleText())`, [e]);
+        e.dataset.blocked = 'sponsored';
+        console.info(`AD Blocked (${query}, getVisibleText(${visibleText}))`, [e]);
         return true;
       }
       return false;
@@ -182,6 +184,7 @@ if (fbContent !== undefined) {
   fbObserver.observe(fbContent, {
     childList: true,
   });
+  console.info("Monitoring page changes", [fbContent]);
 }
 
 // cleanup
