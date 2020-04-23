@@ -46,7 +46,8 @@ const possibleSponsoredTextQueries = [
   'div[data-testid$="story-subtilte"] > :first-child',
   'div[data-testid$="story--subtilte"] > :first-child',
   'a[role="button"][aria-labelledby]',
-  'a[role="link"] > span[aria-labelledby]',
+  'a[role="link"] > span[aria-labelledby]', // FB5 design
+  'div[role="button"] > span[aria-labelledby]', // FB5 design
   'div[data-testid*="subtitle"] > :first-child',
   'div[data-testid*="label"] > :first-child',
 ];
