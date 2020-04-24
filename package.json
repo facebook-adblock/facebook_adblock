@@ -4,18 +4,20 @@
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/content.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:codestyle": "prettier --check \"src/**/*.js\"",
+    "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
+    "test": "npm run test:codestyle && npm run test:webext",
     "clean": "rm -rf dist/",
     "prebuild": "mkdir -p dist/src",
     "build:js": "rollup -c",
     "build:static": "cp static/* dist/src",
     "build": "npm run build:js && npm run build:static",
-    "prerelease": "npm run build",
+    "prerelease": "npm run test && npm run build",
     "release:chrome": "cd dist && zip -r chrome.zip src",
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
-    "sign": "web-ext sign --source-dir dist/src --overwrite-dest --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\""
+    "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\""
   },
   "repository": {
     "type": "git",

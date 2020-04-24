@@ -1,9 +1,10 @@
 name: Publish
 
-# Triggers the workflow on push events but only for the master branch
+# Triggers the workflow on tags that are "v*.*.*"
 on:
   push:
-    branches: [master]
+    tags:
+      - "v*.*.*"
 
 jobs:
   publish:
@@ -23,8 +24,12 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - run: npm ci
-      - run: npm run release
+      - id: release
+        run: |
+        npm run release
+        echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_-*.zip)"
 
+      # Publish to Chrome
       - name: Chrome Addon Action
         uses: trmcnvn/chrome-addon@v2
         with:
@@ -33,3 +38,13 @@ jobs:
           client-id: ${{ secrets.CHROME_CLIENT_ID }}
           client-secret: ${{ secrets.CHROME_CLIENT_SECRET }}
           refresh-token: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+      # Publish to Firefox
+      - name: Firefox Addon Action
+        uses: trmcnvn/firefox-addon@v1
+        with:
+          uuid: "{d403ee9c-3bd2-41d3-b1e9-27698babf097}"
+          xpi: ${{ steps.release.outputs.ffxpi }}
+          manifest: static/manifest.json
+          api-key: ${{ secrets.FIREFOX_API_KEY }}
+          api-secret: ${{ secrets.FIREFOX_API_SECRET }}
