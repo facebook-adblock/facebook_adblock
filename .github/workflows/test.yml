@@ -8,7 +8,7 @@ on:
     branches: [master]
 
 jobs:
-  publish:
+  test:
     runs-on: ubuntu-latest
 
     strategy:
