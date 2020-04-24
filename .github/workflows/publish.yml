@@ -27,7 +27,7 @@ jobs:
       - id: release
         run: |
         npm run release
-        echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_-*.zip)"
+        echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_*.zip)"
 
       # Publish to Chrome
       - name: Chrome Addon Action
