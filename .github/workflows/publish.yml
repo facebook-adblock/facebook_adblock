@@ -45,6 +45,6 @@ jobs:
         with:
           uuid: "{d403ee9c-3bd2-41d3-b1e9-27698babf097}"
           xpi: ${{ steps.release.outputs.ffxpi }}
-          manifest: static/manifest.json
+          manifest: dist/src/manifest.json
           api-key: ${{ secrets.FIREFOX_API_KEY }}
           api-secret: ${{ secrets.FIREFOX_API_SECRET }}
