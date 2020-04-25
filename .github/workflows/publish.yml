@@ -4,7 +4,7 @@ name: Publish
 on:
   push:
     tags:
-      - "v*.*.*"
+      - v*.*.*
 
 jobs:
   publish:
@@ -26,8 +26,8 @@ jobs:
       - run: npm ci
       - id: release
         run: |
-        npm run release
-        echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_*.zip)"
+          npm run release
+          echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_*.zip)"
 
       # Publish to Chrome
       - name: Chrome Addon Action
