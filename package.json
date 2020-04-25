@@ -2,7 +2,7 @@
   "name": "facebook_adblock",
   "version": "1.8.2",
   "description": "An open-source Ad Blocker for Facebook™",
-  "main": "src/content.js",
+  "main": "src/main.js",
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "mkdir -p dist/src",
@@ -35,6 +35,9 @@
     "last 3 firefox version",
     "Firefox ESR"
   ],
+  "pre-commit": [
+    "test"
+  ],
   "dependencies": {
     "core-js": "^3.6.5",
     "regenerator-runtime": "^0.13.5"
@@ -47,9 +50,11 @@
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
+    "pre-commit": "^1.2.2",
     "prettier": "^2.0.5",
     "rollup": "^2.7.2",
     "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-cleanup": "^3.1.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "web-ext": "^4.2.0"

@@ -1,4 +1,5 @@
 const babel = require("rollup-plugin-babel");
+const cleanup = require("rollup-plugin-cleanup");
 const commonjs = require("rollup-plugin-commonjs");
 const resolve = require("rollup-plugin-node-resolve");
 
@@ -14,5 +15,6 @@ module.exports = {
       exclude: "node_modules/**",
     }),
     commonjs(),
+    cleanup(),
   ],
 };
