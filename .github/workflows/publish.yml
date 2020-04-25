@@ -32,6 +32,7 @@ jobs:
       # Publish to Chrome
       - name: Chrome Addon Action
         uses: trmcnvn/chrome-addon@v2
+        continue-on-error: true
         with:
           extension: kinpgphmiekapnpbmobneleaiemkefag
           zip: dist/chrome.zip
@@ -42,6 +43,7 @@ jobs:
       # Publish to Firefox
       - name: Firefox Addon Action
         uses: trmcnvn/firefox-addon@v1
+        continue-on-error: true
         with:
           uuid: "{d403ee9c-3bd2-41d3-b1e9-27698babf097}"
           xpi: ${{ steps.release.outputs.ffxpi }}
