@@ -6,13 +6,16 @@
 /*
 .rhcFooter: ads in pictures (photo.php) when there is not many comments;
 #pagelet_ego_pane: sidebar ads
-#MRoot article[data-xt]: mobile suggested posts
-._1lil._2pie._3-8y: marketplace ads
+#MRoot article[data-xt]: mobile sponsored posts
+#MFirstBatch article[data-xt*="adid"]: mobile sponsoredbb posts
+._1lil._2pie._3-8y, ._6y8t._3-95._71uj: marketplace ads
 */
 .rhcFooter,
 #pagelet_ego_pane,
 #MRoot article[data-xt],
-._1lil._2pie._3-8y {
+#MFirstBatch article[data-xt*="adid"],
+._1lil._2pie._3-8y,
+._6y8t._3-95._71uj {
   display: none !important;
 }
 
