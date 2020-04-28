@@ -1,9 +1,4 @@
-import {
-  whitelist,
-  blacklist,
-  sponsoredTexts,
-  possibleSponsoredTextQueries,
-} from "./constants";
+import { whitelist, blacklist, sponsoredTexts } from "./constants";
 
 /**
  * Facebook uses various techniques to hide an element
@@ -77,10 +72,11 @@ function getVisibleText(e) {
 
 /**
  * Hide an element if this is a sponsored element
- * @param {Element} e
+ * @param {String[]} possibleSponsoredTextQueries a list of selectors to look for a sponsored element
+ * @param {Element} e DOM element
  * @returns {boolean} true if this is a sponsored element
  */
-function hideIfSponsored(e) {
+function hideIfSponsored(possibleSponsoredTextQueries, e) {
   // ignore if matches the whitelist
   if (
     whitelist.some((query) => {

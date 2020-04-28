@@ -1,4 +1,22 @@
-import hideIfSponsored from "./hide_if_sponsored";
+import __hideIfSponsored from "./hide_if_sponsored";
+
+const possibleSponsoredTextQueries = [
+  'div[id^="feedsubtitle"] > :first-child',
+  'div[id^="feed_sub_title"] > :first-child',
+  'div[id^="feed__sub__title"] > :first-child',
+  'div[id^="feedlabel"] > :first-child',
+  'div[id^="fbfeed_sub_header_id"] > :nth-child(3)',
+  'div[data-testid$="storysub-title"] > :first-child',
+  'div[data-testid$="story-subtilte"] > :first-child',
+  'div[data-testid$="story--subtilte"] > :first-child',
+  'a[role="button"][aria-labelledby]',
+  'div[data-testid*="subtitle"] > :first-child',
+  'div[data-testid*="label"] > :first-child',
+];
+
+function hideIfSponsored(e) {
+  return __hideIfSponsored(possibleSponsoredTextQueries, e);
+}
 
 let feedObserver = null;
 
@@ -70,4 +88,12 @@ window.addEventListener("beforeunload", () => {
   }
 });
 
-export { setupPageObserver as default };
+/**
+ * Detect if it is a classic Facebook layout
+ * @returns {boolean} true if this is a classic Facebook layout
+ */
+function isClassicFacebook() {
+  return document.getElementsByClassName("fb_content")[0] !== undefined;
+}
+
+export { setupPageObserver, isClassicFacebook };

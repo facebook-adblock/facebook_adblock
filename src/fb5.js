@@ -1,4 +1,13 @@
-import hideIfSponsored from "./hide_if_sponsored";
+import __hideIfSponsored from "./hide_if_sponsored";
+
+const possibleSponsoredTextQueries = [
+  'a[role="link"] > span[aria-labelledby]',
+  'div[role="button"] > span[aria-labelledby]',
+];
+
+function hideIfSponsored(e) {
+  return __hideIfSponsored(possibleSponsoredTextQueries, e);
+}
 
 let feedObserver = null;
 
@@ -122,4 +131,12 @@ window.addEventListener("beforeunload", () => {
   }
 });
 
-export { setupPageObserver as default };
+/**
+ * Detect if it is a new FB5 layout
+ * @returns {boolean} true if this is a new FB5 layout
+ */
+function isFB5() {
+  return document.getElementById("mount_0_0") !== null;
+}
+
+export { setupPageObserver, isFB5 };

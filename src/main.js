@@ -1,21 +1,8 @@
-import setupClassicPageObserver from "./classic";
-import setupFB5PageObserver from "./fb5";
-
-/**
- * Detect if it is a classic Facebook layout
- * @returns {boolean} true if this is a classic Facebook layout
- */
-function isClassicFacebook() {
-  return document.getElementsByClassName("fb_content")[0] !== undefined;
-}
-
-/**
- * Detect if it is a new FB5 layout
- * @returns {boolean} true if this is a new FB5 layout
- */
-function isFB5() {
-  return document.getElementById("mount_0_0") !== null;
-}
+import {
+  setupPageObserver as setupClassicPageObserver,
+  isClassicFacebook,
+} from "./classic";
+import { setupPageObserver as setupFB5PageObserver, isFB5 } from "./fb5";
 
 if (isClassicFacebook()) {
   // Old Facebook design
@@ -24,7 +11,9 @@ if (isClassicFacebook()) {
   // if it's FB5 design
   setupFB5PageObserver();
 } else {
-  console.warn("Page element not found!");
+  console.warn(
+    "Page element not found! If this is not a mobile Facebook, please file a bug report: https://github.com/tiratatp/facebook_adblock/issues/new"
+  );
 }
-// if we detect a page element, then it must be a mobile website.
-// in that case, we don't need javascript to block ads
+// if we cannot detect a page element, then it must be a mobile website.
+// in that case, we don't need javascript to block ads.
