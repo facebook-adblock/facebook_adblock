@@ -19,6 +19,7 @@ const sponsoredTexts = [
   "Sponzorováno", // Czech
   "Gesponsord", // Dutch
   "May Sponsor", // Filipino
+  "Commandité", // French (Canada)
   "Sponsorisé", // French
   "Gesponsert", // German
   "Χορηγούμενη", // Greek
