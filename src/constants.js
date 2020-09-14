@@ -29,6 +29,7 @@ const sponsoredTexts = [
   "Sponsorizzato", // Italian
   "Sponsorowane", // Polish
   "Patrocinado", // Portuguese (Brazil)
+  "Sponsorizat", // Romanian
   "Реклама", // Russian
   "Sponzorované", // Slovak
   "Publicidad", // Spanish
