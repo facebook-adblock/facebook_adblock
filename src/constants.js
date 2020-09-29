@@ -25,6 +25,7 @@ const sponsoredTexts = [
   "Χορηγούμενη", // Greek
   "ממומן", // Hebrew
   "प्रायोजित", // Hindi
+  "Hirdetés", // Hungarian
   "Bersponsor", // Indonesian
   "Sponsorizzato", // Italian
   "Sponsorowane", // Polish
