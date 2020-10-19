@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.8.6",
+  "version": "1.8.7",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/main.js",
   "scripts": {
@@ -46,22 +46,22 @@
     "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.11.5",
-    "eslint": "^7.9.0",
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "latest",
     "eslint-config-prettier": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-prettier": "latest",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.1.1",
-    "rollup": "^2.26.11",
+    "prettier": "^2.1.2",
+    "rollup": "^2.32.0",
     "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-cleanup": "^3.1.1",
+    "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "run-script-os": "^1.1.1",
-    "web-ext": "^5.0.0"
+    "web-ext": "^5.2.0"
   },
   "eslintIgnore": [
     "content.js"
