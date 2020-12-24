@@ -34,6 +34,12 @@ _We are not affiliated, associated, authorized, endorsed by, or in any way offic
 
 _Facebook is a registered trademark of the Facebook, Inc._
 
+## Building
+
+1. Run `npm run release`
+1. The compiled extension should be in `dist/`
+1. Load the unsigned extension into your browser
+
 ## Debugging
 
 All processed DOM elements are flagged with `data-blocked` attribute. Possible values are:
@@ -67,3 +73,12 @@ document.head.insertAdjacentHTML("beforeend",
   }
 </style>`);
 ```
+
+## Publishing
+
+1. Tag a commit with a string with this format `v*.*.*`
+   - `git tag -a v2.0.0`
+1. Push a tag to Github
+1. Github action should publish the extension to both Firefox and Chrome
+   - Firefox should be released in a couple of minutes
+   - Chrome can take as long as a few months if it needs a review
