@@ -44,8 +44,8 @@ _Facebook is a registered trademark of the Facebook, Inc._
 
 All processed DOM elements are flagged with `data-blocked` attribute. Possible values are:
 
-- `whitelist`: whitelisted
-- `blacklist`: blocked due to blacklist check
+- `allowedList`: allowed list
+- `blockedList`: blocked due to blocked list check
 - `sponsored`: blocked due to sponsored label
 
 You can use dev tools console with CSS selectors like `*[data-blocked]` or `*[data-blocked=sponsored]`.
@@ -68,7 +68,7 @@ document.head.insertAdjacentHTML("beforeend",
     display:inherit !important;
     border: red 10px solid;
   }
-  *[data-blocked=whitelist] {
+  *[data-blocked=allowedList] {
     border-color: green;
   }
 </style>`);

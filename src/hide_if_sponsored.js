@@ -1,4 +1,4 @@
-import { whitelist, blacklist, sponsoredTexts } from "./constants";
+import { allowedList, sponsoredTexts, blockedList } from "./constants";
 
 /**
  * Facebook uses various techniques to hide an element
@@ -77,11 +77,11 @@ function getVisibleText(e) {
  * @returns {boolean} true if this is a sponsored element
  */
 function hideIfSponsored(possibleSponsoredTextQueries, e) {
-  // ignore if matches the whitelist
+  // ignore if matches the allowedList
   if (
-    whitelist.some((query) => {
+    allowedList.some((query) => {
       if (e.querySelector(query) !== null) {
-        e.dataset.blocked = "whitelist";
+        e.dataset.blocked = "allowedList";
         console.info(`Ignored (${query})`, [e]);
         return true;
       }
@@ -91,12 +91,12 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
     return false; // ignored this element
   }
 
-  // hide right away if macthces the blacklist
+  // hide right away if matches the blocked list
   if (
-    blacklist.some((query) => {
+    blockedList.some((query) => {
       if (e.querySelector(query) !== null) {
         e.style.display = "none";
-        e.dataset.blocked = "blacklist";
+        e.dataset.blocked = "blockedList";
         console.info(`AD Blocked (${query})`, [e]);
         return true;
       }
