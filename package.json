@@ -32,8 +32,9 @@
   },
   "homepage": "https://github.com/tiratatp/facebook_adblock",
   "browserslist": [
-    "last 4 chrome version",
-    "last 3 firefox version",
+    "> 0.5% and chrome > 75",
+    "last 3 firefox versions",
+    "last 3 FirefoxAndroid versions",
     "Firefox ESR"
   ],
   "pre-commit": [
