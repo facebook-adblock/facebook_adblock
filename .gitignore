@@ -1,5 +1,11 @@
+# PEM-encoded certificate data
 *.pem
-*.crx
-node_modules
+
+# Dependency directories
+node_modules/
+
+# Build output
 dist/
+
+# General
 .DS_Store

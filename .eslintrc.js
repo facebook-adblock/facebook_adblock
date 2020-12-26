@@ -8,4 +8,5 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: "module",
   },
+  ignorePatterns: ["content.js"],
 };
