@@ -10,6 +10,7 @@
     "build:static": "cp static/* dist/src && npm run build:static:sed && echo \"manifest.json file:\" && cat dist/src/manifest.json",
     "build:static:sed": "sed -i \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json || sed -i '.bak' \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json",
     "build": "npm run build:js && npm run build:static",
+    "formatcode": "prettier --write \"src/**/*.js\"",
     "pretest": "npm run build",
     "test:codestyle": "prettier --check \"src/**/*.js\"",
     "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
@@ -19,7 +20,8 @@
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
-    "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\""
+    "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\"",
+    "watch": "chokidar \"src/*.js\" -c \"npm run build:js\""
   },
   "repository": {
     "type": "git",
@@ -46,6 +48,7 @@
     "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
+    "chokidar-cli": "^2.1.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.2.0",
