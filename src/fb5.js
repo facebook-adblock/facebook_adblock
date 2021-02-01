@@ -95,27 +95,24 @@ function onPageChange() {
 const pageObserver = new MutationObserver(onPageChange);
 
 /**
- * Detect the current page and setup a page change observer.
+ * Setup a mutation observer at the `root` element to detect a page change.
  * This is because Facebook is using AJAX to load new content.
  *
  * THIS IS THE MAIN ENTRY POINT
  */
 function setupPageObserver() {
-  // We are expecting to find a page div
-  const pageDiv = document.querySelector(
-    "div[data-pagelet=root] div[data-pagelet=page]"
-  );
-  // make sure there's a page element
-  if (pageDiv !== null) {
+  // We are expecting to find a root div
+  const rootDiv = document.querySelector("div[data-pagelet=root]");
+  // make sure there's a root element
+  if (rootDiv !== null) {
     // trigger first page initiation
     onPageChange();
 
-    // we need to observe the container of the page
-    // for any page changes
-    pageObserver.observe(pageDiv.parentNode, {
+    pageObserver.observe(rootDiv, {
       childList: true,
+      subtree: true,
     });
-    console.info("Monitoring page changes", [pageDiv]);
+    console.info("Monitoring page changes", [rootDiv]);
   } else {
     // no page div was available yet in DOM. will check again
     setTimeout(setupPageObserver, 1000);
