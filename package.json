@@ -21,7 +21,7 @@
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
     "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\"",
-    "watch": "chokidar \"src/*.js\" -c \"npm run build:js\""
+    "watch": "rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,6 @@
     "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
-    "chokidar-cli": "^2.1.0",
     "eslint": "^7.19.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.2.0",
