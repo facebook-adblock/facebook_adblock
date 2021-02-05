@@ -10,6 +10,7 @@
     "build:static": "cp static/* dist/src && npm run build:static:sed && echo \"manifest.json file:\" && cat dist/src/manifest.json",
     "build:static:sed": "sed -i \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json || sed -i '.bak' \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json",
     "build": "npm run build:js && npm run build:static",
+    "formatcode": "prettier --write \"src/**/*.js\"",
     "pretest": "npm run build",
     "test:codestyle": "prettier --check \"src/**/*.js\"",
     "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
@@ -19,7 +20,8 @@
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
-    "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\""
+    "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\"",
+    "watch": "rollup -c -w"
   },
   "repository": {
     "type": "git",
