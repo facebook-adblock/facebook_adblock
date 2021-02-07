@@ -92,44 +92,8 @@ function onPageChange() {
   }
 }
 
-const pageObserver = new MutationObserver(onPageChange);
-
-/**
- * Setup a mutation observer at the `root` element to detect a page change.
- * This is because Facebook is using AJAX to load new content.
- *
- * THIS IS THE MAIN ENTRY POINT
- */
-function setupPageObserver() {
-  // We are expecting to find a root div
-  const rootDiv = document.querySelector("div[data-pagelet=root]");
-  // make sure there's a root element
-  if (rootDiv !== null) {
-    // trigger first page initiation
-    onPageChange();
-
-    pageObserver.observe(rootDiv, {
-      childList: true,
-      subtree: true,
-    });
-    console.info("Monitoring page changes", [rootDiv]);
-  } else {
-    // no page div was available yet in DOM. will check again
-    setTimeout(setupPageObserver, 1000);
-  }
-}
-
-// cleanup
-window.addEventListener("beforeunload", () => {
-  pageObserver.disconnect();
-  if (feedObserver !== null) {
-    feedObserver.disconnect();
-    feedObserver = null;
-  }
-});
-
 function isFBWatch() {
   return document.location.pathname === "/watch";
 }
 
-export { setupPageObserver, isFBWatch };
+export { onPageChange, isFBWatch };

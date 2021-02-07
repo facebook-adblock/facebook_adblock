@@ -1,3 +1,4 @@
+import { onPageChange as onPageChangeInWatch, isFBWatch } from "./fb_watch";
 import __hideIfSponsored from "./hide_if_sponsored";
 
 const possibleSponsoredTextQueries = [
@@ -68,6 +69,14 @@ function setFeedObserver() {
 }
 
 function onPageChange() {
+  if (isFBWatch()) {
+    onPageChangeInWatch();
+  } else {
+    onPageChangeInNewFeed();
+  }
+}
+
+function onPageChangeInNewFeed() {
   // there's a feed div that we don't monitor yet
   if (
     document.querySelector("div[role=feed]:not([data-adblock-monitored])") !==
