@@ -26,6 +26,3 @@ if (isClassicFacebook()) {
 }
 // if we cannot detect a page element, then it must be a mobile website.
 // in that case, we don't need javascript to block ads.
-
-//dom = document.querySelectorAll('div[aria-haspopup="menu"]')[0]
-//dom.parentElement.parentElement.parentElement.parentElement.parentElement.style.display = "none"

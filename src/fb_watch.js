@@ -4,17 +4,13 @@ let feedObserver = null;
 function setFeedObserver() {
   // We are expecting to find a new feed div
   const feed = document.querySelector(
-    "div[role=feed]:not([data-adblock-monitored])"
+    'div[data-pagelet="MainFeed"]>div>div>div:not([data-adblock-monitored]):first-child'
   );
-  if (feed !== null) {
-    // check existing posts
-    feed
-      .querySelectorAll('div[data-pagelet^="FeedUnit_"]')
-      .forEach(hideIfSponsored);
 
-    const feedContainer = feed.parentNode;
-    // flag this feed as monitored
+  if (feed !== null) {
+    // flag as monitored
     feed.dataset.adblockMonitored = true;
+    const feedContainer = feed.parentNode;
     feedObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         // check if feed was reloaded without changing page
@@ -31,12 +27,7 @@ function setFeedObserver() {
         // new feed posts added
         if (mutation.target === feed && mutation.addedNodes.length > 0) {
           mutation.addedNodes.forEach((node) => {
-            if (
-              node.dataset.pagelet &&
-              node.dataset.pagelet.startsWith("FeedUnit_")
-            ) {
-              hideIfSponsored(node);
-            }
+            hideIfSponsored(node);
           });
         }
       });
@@ -56,11 +47,28 @@ function setFeedObserver() {
   }
 }
 
+/**
+ * check the element is a sponsored video
+ */
+function hideIfSponsored(e) {
+  // check sponsored video condition
+  const childNode = e.querySelector(
+    'div[aria-haspopup="menu"]:not([data-adblocked])'
+  );
+  if (childNode !== null) {
+    childNode.dataset.adblocked = true;
+    // flag a sponsored video
+    e.style.display = "none";
+    e.dataset.blocked = "sponsored";
+    console.info(`AD Blocked (div[aria-haspopup="menu"])`, [childNode, e]);
+  }
+}
+
 function onPageChange() {
   // there's a feed div that we don't monitor yet
   if (
     document.querySelector(
-      'div[aria-haspopup="menu"]:not([data-adblock-monitored])'
+      'div[data-pagelet="MainFeed"]>div>div>div:not([data-adblock-monitored]):first-child'
     ) !== null
   ) {
     setFeedObserver();
@@ -76,7 +84,7 @@ function onPageChange() {
   if (
     feedObserver !== null &&
     document.querySelector(
-      'div[aria-haspopup="menu"][data-adblock-monitored]'
+      'div[data-pagelet="MainFeed"]>div>div>div:first-child[data-adblock-monitored]'
     ) === null
   ) {
     feedObserver.disconnect();
