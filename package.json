@@ -21,7 +21,7 @@
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
     "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\"",
-    "watch": "rollup -c -w"
+    "watch": "npm run build:static && rollup -c -w"
   },
   "repository": {
     "type": "git",
