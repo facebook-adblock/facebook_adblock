@@ -21,7 +21,7 @@
     "release": "npm run release:chrome && npm run release:firefox",
     "presign": "npm run release",
     "sign": "web-ext sign --source-dir dist/src --artifacts-dir dist/ --id \"{d403ee9c-3bd2-41d3-b1e9-27698babf097}\"",
-    "watch": "rollup -c -w"
+    "watch": "npm run build:static && rollup -c -w"
   },
   "repository": {
     "type": "git",
@@ -43,8 +43,8 @@
     "test"
   ],
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
     "@rollup/plugin-babel": "^5.2.3",
     "@rollup/plugin-commonjs": "^17.1.0",
     "@rollup/plugin-node-resolve": "^11.1.1",
