@@ -248,7 +248,7 @@ window.addEventListener("beforeunload", () => {
  * @returns {boolean} true if this is a new FB5 layout
  */
 function isFB5() {
-  return document.getElementById("mount_0_0") !== null;
+  return document.querySelectorAll("[id^=mount_0_0]").length > 0;
 }
 
 /**
