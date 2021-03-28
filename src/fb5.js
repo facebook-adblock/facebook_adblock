@@ -3,7 +3,7 @@ import __hideIfSponsored from "./hide_if_sponsored";
 const possibleSponsoredTextQueries = [
   'a[role="link"] > span[aria-labelledby]',
   'div[role="button"] > span[aria-labelledby]',
-  'div[role="button"]',
+  'span[dir="auto"] > span > div[role="button"]:not([aria-labelledby])',
 ];
 
 function hideIfSponsored(e) {
