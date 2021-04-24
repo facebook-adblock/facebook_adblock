@@ -211,7 +211,10 @@ const pageObserver = new MutationObserver(onPageChange);
  */
 function setupPageObserver() {
   // We are expecting to find a root div
-  const rootDiv = document.querySelector("div[data-pagelet=root]");
+  // as of April 2021, there's no pagelet root, fallback to observe mount_0_0
+  const rootDiv =
+    document.querySelector("div[data-pagelet=root]") ||
+    document.querySelector("div[id^=mount_0_0]");
   // make sure there's a root element
   if (rootDiv !== null) {
     // trigger first page initiation

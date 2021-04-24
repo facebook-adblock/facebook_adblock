@@ -4,6 +4,7 @@ import {
 } from "./classic";
 import { setupPageObserver as setupFB5PageObserver, isFB5 } from "./fb5";
 
+console.info("Ad Blocker for Facebook™ initialized");
 if (isClassicFacebook()) {
   // Old Facebook design
   setupClassicPageObserver();
