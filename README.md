@@ -71,6 +71,16 @@ document.head.insertAdjacentHTML("beforeend",
   *[data-blocked=allowedList] {
     border-color: green;
   }
+  *[data-adblocked] {
+    display:inherit !important;
+    border: pink 10px solid;
+  }
+  *[data-adblock-monitored] {
+    border: blue 10px solid;
+  }
+  *[data-adblock-observed] {
+    border: aqua 10px solid;
+  }
 </style>`);
 ```
 
