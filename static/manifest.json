@@ -11,11 +11,23 @@
   "homepage_url": "https://github.com/tiratatp/facebook_adblock",
   "content_scripts": [
     {
-      "matches": ["*://*.facebook.com/*", "*://*.facebookcorewwwi.onion/*"],
-      "css": ["content.css"],
-      "js": ["content.js"],
+      "matches": [
+        "*://*.facebook.com/*",
+        "*://*.facebookcorewwwi.onion/*"
+      ],
+      "css": [
+        "content.css"
+      ],
+      "js": [
+        "content.js"
+      ],
       "run_at": "document_idle"
     }
   ],
-  "content_security_policy": "default-src 'self'"
+  "content_security_policy": "default-src 'self'",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{d403ee9c-3bd2-41d3-b1e9-27698babf097}"
+    }
+  }
 }
