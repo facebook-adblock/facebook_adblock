@@ -141,14 +141,10 @@ function setWatchObserver() {
 
 function onPageChange() {
   if (isFBWatch()) {
-    if (feedObserver !== null) {
-      cleanupFeedObserver();
-    }
+    cleanupFeedObserver();
     onPageChangeInWatch();
   } else {
-    if (watchObserver !== null) {
-      cleanupWatchObserver();
-    }
+    cleanupWatchObserver();
     onPageChangeInNewFeed();
   }
 }
@@ -240,42 +236,47 @@ function setupPageObserver() {
 // cleanup
 window.addEventListener("beforeunload", () => {
   cleanupPageObserver();
-
-  if (feedObserver !== null) {
-    cleanupFeedObserver();
-  }
-
-  if (watchObserver !== null) {
-    cleanupWatchObserver();
-  }
+  cleanupFeedObserver();
+  cleanupWatchObserver();
 });
 function cleanupPageObserver() {
-  if (pageObserver === null) return;
-  pageObserver.__observed &&
-    delete feedObserver.__observed.dataset.adblockObserved &&
-    delete feedObserver.__observed;
+  if (pageObserver === null) {
+    return;
+  }
+  if (pageObserver.__observed) {
+    delete pageObserver.__observed.dataset.adblockObserved;
+    delete pageObserver.__observed;
+  }
   pageObserver.disconnect();
   // do not nullify pageObserver!
 }
 function cleanupFeedObserver() {
-  if (feedObserver === null) return;
-  feedObserver.__monitored &&
-    delete feedObserver.__monitored.dataset.adblockMonitored &&
+  if (feedObserver === null) {
+    return;
+  }
+  if (feedObserver.__monitored) {
+    delete feedObserver.__monitored.dataset.adblockMonitored;
     delete feedObserver.__monitored;
-  feedObserver.__observed &&
-    delete feedObserver.__observed.dataset.adblockObserved &&
+  }
+  if (feedObserver.__observed) {
+    delete feedObserver.__observed.dataset.adblockObserved;
     delete feedObserver.__observed;
+  }
   feedObserver.disconnect();
   feedObserver = null;
 }
 function cleanupWatchObserver() {
-  if (watchObserver === null) return;
-  watchObserver.__monitored &&
-    delete watchObserver.__monitored.dataset.adblockMonitored &&
+  if (watchObserver === null) {
+    return;
+  }
+  if (watchObserver.__monitored) {
+    delete watchObserver.__monitored.dataset.adblockMonitored;
     delete watchObserver.__monitored;
-  watchObserver.__observed &&
-    delete watchObserver.__observed.dataset.adblockObserved &&
+  }
+  if (watchObserver.__observed) {
+    delete watchObserver.__observed.dataset.adblockObserved;
     delete watchObserver.__observed;
+  }
   watchObserver.disconnect();
   watchObserver = null;
 }
