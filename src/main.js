@@ -18,3 +18,30 @@ if (isClassicFacebook()) {
 }
 // if we cannot detect a page element, then it must be a mobile website.
 // in that case, we don't need javascript to block ads.
+
+function enableDebug() {
+  document.head.insertAdjacentHTML(
+    "beforeend",
+    `
+<style>
+  *[data-blocked] {
+    display:inherit !important;
+    border: red 10px solid;
+  }
+  *[data-blocked=allowedList] {
+    border-color: green;
+  }
+  *[data-adblocked] {
+    display:inherit !important;
+    border: pink 10px solid;
+  }
+  *[data-adblock-monitored] {
+    border: blue 10px solid;
+  }
+  *[data-adblock-observed] {
+    border: aqua 10px solid;
+  }
+</style>`
+  );
+}
+// enableDebug(); // Only uncomment this in development

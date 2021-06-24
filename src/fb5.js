@@ -44,6 +44,7 @@ function setFeedObserver() {
 
     const feedContainer = feed.parentNode;
     // flag this feed as monitored
+    feedContainer.dataset.adblockObserved = true;
     feed.dataset.adblockMonitored = true;
     feedObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
@@ -71,6 +72,8 @@ function setFeedObserver() {
         }
       });
     });
+    feedObserver.__observed = feedContainer;
+    feedObserver.__monitored = feed;
     // check for new feed posts
     feedObserver.observe(feed, {
       childList: true,
@@ -94,9 +97,10 @@ function setWatchObserver() {
   );
 
   if (feed !== null) {
-    // flag as monitored
-    feed.dataset.adblockMonitored = true;
     const feedContainer = feed.parentNode;
+    // flag as monitored
+    feedContainer.dataset.adblockObserved = true;
+    feed.dataset.adblockMonitored = true;
     watchObserver = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
         // check if feed was reloaded without changing page
@@ -118,6 +122,8 @@ function setWatchObserver() {
         }
       });
     });
+    watchObserver.__observed = feedContainer;
+    watchObserver.__monitored = feed;
     // check for new feed posts
     watchObserver.observe(feed, {
       childList: true,
@@ -135,16 +141,10 @@ function setWatchObserver() {
 
 function onPageChange() {
   if (isFBWatch()) {
-    if (feedObserver !== null) {
-      feedObserver.disconnect();
-      feedObserver = null;
-    }
+    cleanupFeedObserver();
     onPageChangeInWatch();
   } else {
-    if (watchObserver !== null) {
-      watchObserver.disconnect();
-      watchObserver = null;
-    }
+    cleanupWatchObserver();
     onPageChangeInNewFeed();
   }
 }
@@ -169,8 +169,7 @@ function onPageChangeInNewFeed() {
     feedObserver !== null &&
     document.querySelector("div[role=feed][data-adblock-monitored]") === null
   ) {
-    feedObserver.disconnect();
-    feedObserver = null;
+    cleanupFeedObserver();
   }
 }
 
@@ -197,8 +196,7 @@ function onPageChangeInWatch() {
       'div[data-pagelet="MainFeed"]>div>div>div:first-child[data-adblock-monitored]'
     ) === null
   ) {
-    watchObserver.disconnect();
-    watchObserver = null;
+    cleanupWatchObserver();
   }
 }
 
@@ -221,6 +219,9 @@ function setupPageObserver() {
     // trigger first page initiation
     onPageChange();
 
+    // flag as monitored
+    rootDiv.dataset.adblockObserved = true;
+    pageObserver.__observed = rootDiv;
     pageObserver.observe(rootDiv, {
       childList: true,
       subtree: true,
@@ -234,18 +235,51 @@ function setupPageObserver() {
 
 // cleanup
 window.addEventListener("beforeunload", () => {
-  pageObserver.disconnect();
-
-  if (feedObserver !== null) {
-    feedObserver.disconnect();
-    feedObserver = null;
-  }
-
-  if (watchObserver !== null) {
-    watchObserver.disconnect();
-    watchObserver = null;
-  }
+  cleanupPageObserver();
+  cleanupFeedObserver();
+  cleanupWatchObserver();
 });
+function cleanupPageObserver() {
+  if (pageObserver === null) {
+    return;
+  }
+  if (pageObserver.__observed) {
+    delete pageObserver.__observed.dataset.adblockObserved;
+    delete pageObserver.__observed;
+  }
+  pageObserver.disconnect();
+  // do not nullify pageObserver!
+}
+function cleanupFeedObserver() {
+  if (feedObserver === null) {
+    return;
+  }
+  if (feedObserver.__monitored) {
+    delete feedObserver.__monitored.dataset.adblockMonitored;
+    delete feedObserver.__monitored;
+  }
+  if (feedObserver.__observed) {
+    delete feedObserver.__observed.dataset.adblockObserved;
+    delete feedObserver.__observed;
+  }
+  feedObserver.disconnect();
+  feedObserver = null;
+}
+function cleanupWatchObserver() {
+  if (watchObserver === null) {
+    return;
+  }
+  if (watchObserver.__monitored) {
+    delete watchObserver.__monitored.dataset.adblockMonitored;
+    delete watchObserver.__monitored;
+  }
+  if (watchObserver.__observed) {
+    delete watchObserver.__observed.dataset.adblockObserved;
+    delete watchObserver.__observed;
+  }
+  watchObserver.disconnect();
+  watchObserver = null;
+}
 
 /**
  * Detect if it is a new FB5 layout
