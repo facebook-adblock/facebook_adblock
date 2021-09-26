@@ -4,6 +4,7 @@ const possibleSponsoredTextQueries = [
   'a[role="link"] > span[aria-labelledby]',
   'div[role="button"] > span[aria-labelledby]',
   'span[dir="auto"] > span > div[role="button"]:not([aria-labelledby])',
+  "span > a[aria-label]",
 ];
 
 function hideIfSponsored(e) {
@@ -294,7 +295,7 @@ function isFB5() {
  * @returns {boolean} true if this is on fb/watch
  */
 function isFBWatch() {
-  return document.location.pathname === "/watch";
+  return /^\/watch\/?$/.test(document.location.pathname);
 }
 
 export { setupPageObserver, isFB5 };
