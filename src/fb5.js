@@ -295,7 +295,7 @@ function isFB5() {
  * @returns {boolean} true if this is on fb/watch
  */
 function isFBWatch() {
-  return document.location.pathname === "/watch";
+  return /^\/watch\/?$/.test(document.location.pathname);
 }
 
 export { setupPageObserver, isFB5 };
