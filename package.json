@@ -25,14 +25,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tiratatp/facebook_adblock.git"
+    "url": "git+https://github.com/facebook-adblock/facebook_adblock.git"
   },
   "author": "tiratatp",
   "license": "GPL-3.0-only",
   "bugs": {
-    "url": "https://github.com/tiratatp/facebook_adblock/issues"
+    "url": "https://github.com/facebook-adblock/facebook_adblock/issues"
   },
-  "homepage": "https://github.com/tiratatp/facebook_adblock",
+  "homepage": "https://github.com/facebook-adblock/facebook_adblock",
   "browserslist": [
     "> 0.5% and chrome > 75",
     "last 3 firefox versions",

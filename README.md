@@ -6,7 +6,7 @@ An open-source Ad Blocker for Facebook™
 - Blocks both suggested posts and sidebar ads
 - Does not slow down your computer
 - Does not track/read your Facebook activity, or other websites
-- You can inspect everything about this extension here, https://github.com/tiratatp/facebook_adblock/blob/master/src/main.js
+- You can inspect everything about this extension here, https://github.com/facebook-adblock/facebook_adblock/blob/mainline/src/main.js
 
 This extension is 100% free and open source.
 

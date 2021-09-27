@@ -13,7 +13,7 @@ if (isClassicFacebook()) {
   setupFB5PageObserver();
 } else {
   console.warn(
-    "Page element not found! If this is not a mobile Facebook, please file a bug report: https://github.com/tiratatp/facebook_adblock/issues/new"
+    "Page element not found! If this is not a mobile Facebook, please file a bug report: https://github.com/facebook-adblock/facebook_adblock/issues/new"
   );
 }
 // if we cannot detect a page element, then it must be a mobile website.

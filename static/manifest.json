@@ -8,7 +8,7 @@
     "128": "icon128.png"
   },
   "author": "tiratatp",
-  "homepage_url": "https://github.com/tiratatp/facebook_adblock",
+  "homepage_url": "https://github.com/facebook-adblock/facebook_adblock",
   "content_scripts": [
     {
       "matches": [
