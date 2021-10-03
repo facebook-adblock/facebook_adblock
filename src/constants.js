@@ -28,6 +28,7 @@ const sponsoredTexts = [
   "Hirdetés", // Hungarian
   "Bersponsor", // Indonesian
   "Sponsorizzato", // Italian
+  "広告", // Japanese
   "Sponsorowane", // Polish
   "Patrocinado", // Portuguese (Brazil)
   "Sponsorizat", // Romanian
