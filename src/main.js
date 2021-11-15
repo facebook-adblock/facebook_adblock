@@ -12,12 +12,12 @@ if (isClassicFacebook()) {
   // if it's FB5 design
   setupFB5PageObserver();
 } else {
+  // if we cannot detect a page element, then it must be a mobile website.
+  // in that case, we don't need javascript to block ads.
   console.warn(
     "Page element not found! If this is not a mobile Facebook, please file a bug report: https://github.com/facebook-adblock/facebook_adblock/issues/new"
   );
 }
-// if we cannot detect a page element, then it must be a mobile website.
-// in that case, we don't need javascript to block ads.
 
 function enableDebug() {
   document.head.insertAdjacentHTML(

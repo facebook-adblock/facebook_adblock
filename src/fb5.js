@@ -150,7 +150,19 @@ function onPageChange() {
   }
 }
 
+function checkRightRail() {
+  const possibleAdNode = document.querySelector(
+    "div[data-pagelet='RightRail'] > div:first-child > span:not([data-blocked])"
+  );
+  if (possibleAdNode != null) {
+    __hideIfSponsored(["h3"], possibleAdNode);
+  }
+}
+
 function onPageChangeInNewFeed() {
+  // RightRail appears only on NewsFeed page
+  checkRightRail();
+
   // there's a feed div that we don't monitor yet
   if (
     document.querySelector("div[role=feed]:not([data-adblock-monitored])") !==
