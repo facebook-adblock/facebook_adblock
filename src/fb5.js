@@ -57,6 +57,12 @@ function setFeedObserver() {
           mutation.target === feedContainer &&
           mutation.addedNodes.length > 0
         ) {
+          // fb starting replacing the feed div with existing data attributes.
+          // We need to cleanup so that we can start observing again.
+          if (mutation.addedNodes[0].dataset.adblockMonitored) {
+            mutation.addedNodes[0].removeAttribute("data-adblock-monitored");
+            delete mutation.addedNodes[0].dataset.adblockMonitored;
+          }
           feedObserver.disconnect();
           // check again for the new feed. Since the DOM has just changed, we
           // want to wait a bit and start looking for the new div after it was
