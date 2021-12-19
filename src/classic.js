@@ -38,7 +38,7 @@ function onPageChange() {
       childList: true,
       subtree: true,
     });
-    console.info("Monitoring feed updates", [feed]);
+    console.info("ABfF:", "Monitoring feed updates", [feed]);
     return;
   }
 
@@ -57,7 +57,7 @@ function onPageChange() {
       childList: true,
       subtree: true,
     });
-    console.info("Monitoring feed updates", [feed]);
+    console.info("ABfF:", "Monitoring feed updates", [feed]);
   }
 }
 
@@ -77,7 +77,7 @@ function setupPageObserver() {
   pageObserver.observe(fbContent, {
     childList: true,
   });
-  console.info("Monitoring page changes", [fbContent]);
+  console.info("ABfF:", "Monitoring page changes", [fbContent]);
 }
 
 window.addEventListener("beforeunload", () => {

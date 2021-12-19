@@ -82,7 +82,7 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
     allowedList.some((query) => {
       if (e.querySelector(query) !== null) {
         e.dataset.blocked = "allowedList";
-        console.info(`Ignored (${query})`, [e]);
+        console.info("ABfF:", `Ignored (${query})`, [e]);
         return true;
       }
       return false;
@@ -97,7 +97,7 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
       if (e.querySelector(query) !== null) {
         e.style.display = "none";
         e.dataset.blocked = "blockedList";
-        console.info(`AD Blocked (${query})`, [e]);
+        console.info("ABfF:", `AD Blocked (${query})`, [e]);
         return true;
       }
       return false;
@@ -119,6 +119,7 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
         e.style.display = "none";
         e.dataset.blocked = "sponsored";
         console.info(
+          "ABfF:",
           `AD Blocked (query='${query}', visibleText='${visibleText}')`,
           [e]
         );

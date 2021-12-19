@@ -4,7 +4,7 @@ import {
 } from "./classic";
 import { setupPageObserver as setupFB5PageObserver, isFB5 } from "./fb5";
 
-console.info("Ad Blocker for Facebook™ initialized");
+console.info("ABfF:", "Ad Blocker for Facebook™ initialized");
 if (isClassicFacebook()) {
   // Old Facebook design
   setupClassicPageObserver();
@@ -15,6 +15,7 @@ if (isClassicFacebook()) {
   // if we cannot detect a page element, then it must be a mobile website.
   // in that case, we don't need javascript to block ads.
   console.warn(
+    "ABfF:",
     "Page element not found! If this is not a mobile Facebook, please file a bug report: https://github.com/facebook-adblock/facebook_adblock/issues/new"
   );
 }
