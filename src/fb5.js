@@ -24,7 +24,10 @@ function hideVideoIfSponsored(e) {
     // flag a sponsored video
     e.style.display = "none";
     e.dataset.blocked = "sponsored";
-    console.info(`AD Blocked (div[aria-haspopup="menu"])`, [childNode, e]);
+    console.info("ABfF:", `AD Blocked (div[aria-haspopup="menu"])`, [
+      childNode,
+      e,
+    ]);
   }
 }
 
@@ -54,6 +57,12 @@ function setFeedObserver() {
           mutation.target === feedContainer &&
           mutation.addedNodes.length > 0
         ) {
+          // fb starting replacing the feed div with existing data attributes.
+          // We need to cleanup so that we can start observing again.
+          if (mutation.addedNodes[0].dataset.adblockMonitored) {
+            mutation.addedNodes[0].removeAttribute("data-adblock-monitored");
+            delete mutation.addedNodes[0].dataset.adblockMonitored;
+          }
           feedObserver.disconnect();
           // check again for the new feed. Since the DOM has just changed, we
           // want to wait a bit and start looking for the new div after it was
@@ -83,7 +92,7 @@ function setFeedObserver() {
     feedObserver.observe(feedContainer, {
       childList: true,
     });
-    console.info("Monitoring feed updates", [feed]);
+    console.info("ABfF:", "Monitoring feed updates", [feed]);
   } else {
     // no feed div was available yet in DOM. will check again
     setTimeout(setFeedObserver, 1000);
@@ -133,7 +142,7 @@ function setWatchObserver() {
     watchObserver.observe(feedContainer, {
       childList: true,
     });
-    console.info("Monitoring watch updates", [feed]);
+    console.info("ABfF:", "Monitoring watch updates", [feed]);
   } else {
     // no feed div was available yet in DOM. will check again
     setTimeout(setWatchObserver, 1000);
@@ -239,7 +248,7 @@ function setupPageObserver() {
       childList: true,
       subtree: true,
     });
-    console.info("Monitoring page changes", [rootDiv]);
+    console.info("ABfF:", "Monitoring page changes", [rootDiv]);
   } else {
     // no page div was available yet in DOM. will check again
     setTimeout(setupPageObserver, 1000);
