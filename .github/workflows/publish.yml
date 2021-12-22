@@ -12,7 +12,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it

@@ -3,9 +3,9 @@ name: Test
 # Triggers the workflow on pushes and pull requests
 on:
   push:
-    branches: [master]
+    branches: [mainline]
   pull_request:
-    branches: [master]
+    branches: [mainline]
 
 jobs:
   test:
@@ -13,7 +13,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [15.x]
+        node-version: [16]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
