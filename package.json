@@ -1,16 +1,16 @@
 {
   "name": "facebook_adblock",
-  "version": "1.9.7",
+  "version": "1.9.8",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/main.js",
   "scripts": {
     "clean": "rm -rf dist/",
     "prebuild": "mkdir -p dist/src",
+    "build:formatcode": "prettier --write \"src/**/*.js\"",
     "build:js": "rollup -c",
     "build:static": "cp static/* dist/src && npm run build:static:sed && echo \"manifest.json file:\" && cat dist/src/manifest.json",
     "build:static:sed": "sed -i \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json || sed -i '.bak' \"s/#VERSION#/$npm_package_version/g\" dist/src/manifest.json",
-    "build": "npm run build:js && npm run build:static",
-    "formatcode": "prettier --write \"src/**/*.js\"",
+    "build": "npm run build:formatcode && npm run build:js && npm run build:static",
     "pretest": "npm run build",
     "test:codestyle": "prettier --check \"src/**/*.js\"",
     "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
@@ -43,19 +43,19 @@
     "test"
   ],
   "devDependencies": {
-    "@babel/core": "^7.16.5",
-    "@babel/preset-env": "^7.16.5",
-    "@rollup/plugin-babel": "^5.3.0",
-    "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^13.1.1",
-    "eslint": "^8.5.0",
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^21.0.3",
+    "@rollup/plugin-node-resolve": "^13.2.0",
+    "eslint": "^8.13.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
     "pre-commit": "^1.2.2",
-    "prettier": "^2.5.1",
-    "rollup": "^2.61.1",
+    "prettier": "^2.6.2",
+    "rollup": "^2.70.1",
     "rollup-plugin-cleanup": "^3.2.1",
-    "web-ext": "^6.6.0"
+    "web-ext": "^6.8.0"
   }
 }

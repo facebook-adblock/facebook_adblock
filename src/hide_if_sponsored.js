@@ -60,11 +60,27 @@ function getVisibleText(e) {
   }
   const children = e.querySelectorAll(":scope > *");
   if (children.length !== 0) {
-    // more level => recursive
-    return (
-      getTextFromContainerElement(e) +
-      Array.prototype.slice.call(children).map(getVisibleText).flat().join("")
-    );
+    if (e.style.display === "flex") {
+      // if the container is a flex container,
+      // then we need a special logic to sort children based on their CSS `order`
+      return (
+        getTextFromContainerElement(e) +
+        Array.prototype.slice
+          .call(children)
+          .filter((e) => e.style.flex !== "" && e.style.order !== "")
+          .map((e) => [parseInt(e.style.order), getVisibleText(e)])
+          .sort((a, b) => a[0] - b[0]) // sort on `order`
+          .map((e) => e[1]) // get the just the text
+          .flat()
+          .join("")
+      );
+    } else {
+      // more level => recursive
+      return (
+        getTextFromContainerElement(e) +
+        Array.prototype.slice.call(children).map(getVisibleText).flat().join("")
+      );
+    }
   }
   // we have found the real text
   return getTextFromElement(e);

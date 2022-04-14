@@ -71,14 +71,7 @@ function setFeedObserver() {
         }
         // new feed posts added
         if (mutation.target === feed && mutation.addedNodes.length > 0) {
-          mutation.addedNodes.forEach((node) => {
-            if (
-              node.dataset.pagelet &&
-              node.dataset.pagelet.startsWith("FeedUnit_")
-            ) {
-              hideIfSponsored(node);
-            }
-          });
+          mutation.addedNodes.forEach(hideIfSponsored);
         }
       });
     });
