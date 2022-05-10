@@ -7,16 +7,14 @@ import { allowedList, sponsoredTexts, blockedList } from "./constants";
  */
 function isHidden(e) {
   const style = window.getComputedStyle(e);
-  if (
+  return !!(
+    e.offsetParent === null ||
     style.display === "none" ||
     style.opacity === "0" ||
     style.fontSize === "0px" ||
     style.visibility === "hidden" ||
     style.position === "absolute"
-  ) {
-    return true;
-  }
-  return false;
+  );
 }
 
 /**
@@ -60,14 +58,18 @@ function getVisibleText(e) {
   }
   const children = e.querySelectorAll(":scope > *");
   if (children.length !== 0) {
-    if (e.style.display === "flex") {
+    const elementComputedStyle = window.getComputedStyle(e);
+    if (elementComputedStyle.display === "flex") {
       // if the container is a flex container,
       // then we need a special logic to sort children based on their CSS `order`
       return (
         getTextFromContainerElement(e) +
         Array.prototype.slice
           .call(children)
-          .filter((e) => e.style.flex !== "" && e.style.order !== "")
+          .filter((e) => {
+            const style = window.getComputedStyle(e);
+            return style.order !== "";
+          })
           .map((e) => [parseInt(e.style.order), getVisibleText(e)])
           .sort((a, b) => a[0] - b[0]) // sort on `order`
           .map((e) => e[1]) // get the just the text
@@ -120,6 +122,17 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
     })
   ) {
     return true; // has ad
+  }
+
+  // log the second post to make it easier to debug and allow users to report issues.
+  if (e.dataset.pagelet === "FeedUnit_1") {
+    let preview = getVisibleText(e);
+    let index = preview.indexOf("·");
+    preview = preview.substring(0, index > 0 ? index : 50).trim() + "…";
+    console.info("ABfF:", `This is the second post and usually is an ad`, [
+      preview,
+      e,
+    ]);
   }
 
   // Look through a list of possible locations of "Sponsored" tag, and see if it matches our list of `sponsoredTexts`
