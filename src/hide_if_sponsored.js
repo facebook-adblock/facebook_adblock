@@ -138,8 +138,12 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
   // Look through a list of possible locations of "Sponsored" tag, and see if it matches our list of `sponsoredTexts`
   return possibleSponsoredTextQueries.some((query) => {
     const result = e.querySelectorAll(query);
+    // Checks if it is the new rule that contains `order` word
+    const isNewRule = query.indexOf("order") > -1;
     return [...result].some((t) => {
-      const visibleText = getVisibleText(t);
+      //if is new rule it takes the parent
+      const item = isNewRule ? t.parentElement : t;
+      const visibleText = getVisibleText(item);
       if (
         sponsoredTexts.some(
           (sponsoredText) => visibleText.indexOf(sponsoredText) !== -1

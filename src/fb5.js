@@ -5,6 +5,8 @@ const possibleSponsoredTextQueries = [
   'div[role="button"] > span[aria-labelledby]',
   'span[dir="auto"] > span > div[role="button"]:not([aria-labelledby])',
   "span > a[aria-label]",
+  // a new rule to find if span contains an order style
+  "span[style*='order: 0;']>span[style*='order: 28;']",
 ];
 
 function hideIfSponsored(e) {
