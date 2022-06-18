@@ -5,7 +5,9 @@ name: OSSAR
 
 on:
   push:
+    branches: [mainline]
   pull_request:
+    branches: [mainline]
 
 jobs:
   OSSAR-Scan:
