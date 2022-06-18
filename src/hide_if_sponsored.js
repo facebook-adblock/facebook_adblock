@@ -138,8 +138,12 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
   // Look through a list of possible locations of "Sponsored" tag, and see if it matches our list of `sponsoredTexts`
   return possibleSponsoredTextQueries.some((query) => {
     const result = e.querySelectorAll(query);
+    // Determine if should use the parent node, checking if it contains `order` word
+    const shouldUseTextFromParent = query.indexOf("order") > -1;
     return [...result].some((t) => {
-      const visibleText = getVisibleText(t);
+      //  Should I use the text from parent node?
+      const item = shouldUseTextFromParent ? t.parentElement : t;
+      const visibleText = getVisibleText(item);
       if (
         sponsoredTexts.some(
           (sponsoredText) => visibleText.indexOf(sponsoredText) !== -1
