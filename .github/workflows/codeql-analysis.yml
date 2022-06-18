@@ -15,7 +15,6 @@ on:
   push:
     branches: [mainline]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [mainline]
   schedule:
     - cron: '27 7 * * 4'
@@ -25,10 +24,13 @@ jobs:
     name: Analyze
     runs-on: ubuntu-latest
 
+    permissions:
+      security-events: write
+
     strategy:
       fail-fast: false
       matrix:
-        node-version: [16]
+        node-version: [latest]
         language: [ 'javascript' ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python' ]
         # Learn more:
@@ -36,11 +38,11 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
-      uses: github/codeql-action/init@v1
+      uses: github/codeql-action/init@v2
       with:
         languages: ${{ matrix.language }}
         # If you wish to specify custom queries, you can do so here or in a config file.
@@ -49,7 +51,7 @@ jobs:
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -60,4 +62,4 @@ jobs:
         echo "::set-output name=ffxpi::$(ls dist/ad_blocker_for_facebook_*.zip)"
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v1
+      uses: github/codeql-action/analyze@v2
