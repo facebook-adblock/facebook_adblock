@@ -1,6 +1,6 @@
 {
   "name": "facebook_adblock",
-  "version": "1.9.11",
+  "version": "1.9.14",
   "description": "An open-source Ad Blocker for Facebook™",
   "main": "src/main.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "pretest": "npm run build",
     "test:codestyle": "prettier --check \"src/**/*.js\"",
     "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
-    "test": "npm run test:codestyle",
+    "test": "npm run test:codestyle && npm run test:webext",
     "prerelease": "npm run test",
     "release:chrome": "cd dist && zip -r chrome.zip src",
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
