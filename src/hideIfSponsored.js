@@ -66,23 +66,22 @@ function getVisibleText(e) {
         getTextFromContainerElement(e) +
         Array.prototype.slice
           .call(children)
-          .filter((e) => {
-            const style = window.getComputedStyle(e);
+          .filter((el) => {
+            const style = window.getComputedStyle(el);
             return style.order !== "";
           })
-          .map((e) => [parseInt(e.style.order), getVisibleText(e)])
+          .map((el) => [parseInt(el.style.order, 10), getVisibleText(el)])
           .sort((a, b) => a[0] - b[0]) // sort on `order`
-          .map((e) => e[1]) // get the just the text
+          .map((el) => el[1]) // get the just the text
           .flat()
           .join("")
       );
-    } else {
-      // more level => recursive
-      return (
-        getTextFromContainerElement(e) +
-        Array.prototype.slice.call(children).map(getVisibleText).flat().join("")
-      );
     }
+    // more level => recursive
+    return (
+      getTextFromContainerElement(e) +
+      Array.prototype.slice.call(children).map(getVisibleText).flat().join("")
+    );
   }
   // we have found the real text
   return getTextFromElement(e);
@@ -127,8 +126,8 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
   // log the second post to make it easier to debug and allow users to report issues.
   if (e.dataset.pagelet === "FeedUnit_1") {
     let preview = getVisibleText(e);
-    let index = preview.indexOf("·");
-    preview = preview.substring(0, index > 0 ? index : 50).trim() + "…";
+    const index = preview.indexOf("·");
+    preview = `${preview.substring(0, index > 0 ? index : 50).trim()}…`;
     console.info("ABfF:", `This is the second post and usually is an ad`, [
       preview,
       e,
@@ -163,4 +162,4 @@ function hideIfSponsored(possibleSponsoredTextQueries, e) {
   });
 }
 
-export { hideIfSponsored as default };
+export default hideIfSponsored;

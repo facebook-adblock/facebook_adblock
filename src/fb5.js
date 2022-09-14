@@ -1,4 +1,4 @@
-import __hideIfSponsored from "./hide_if_sponsored";
+import __hideIfSponsored from "./hideIfSponsored";
 
 const possibleSponsoredTextQueries = [
   'a[role="link"] span[aria-labelledby]',
