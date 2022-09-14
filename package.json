@@ -14,7 +14,7 @@
     "pretest": "npm run build",
     "test:codestyle": "prettier --check \"src/**/*.js\"",
     "test:webext": "web-ext lint --source-dir dist/src --artifacts-dir dist/",
-    "test": "npm run test:codestyle && npm run test:webext",
+    "test": "npm run test:codestyle",
     "prerelease": "npm run test",
     "release:chrome": "cd dist && zip -r chrome.zip src",
     "release:firefox": "web-ext build --source-dir dist/src --overwrite-dest --artifacts-dir dist/",
@@ -43,19 +43,19 @@
     "test"
   ],
   "devDependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/preset-env": "^7.18.2",
+    "@babel/core": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
     "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.0",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "eslint": "^8.17.0",
+    "@rollup/plugin-commonjs": "^22.0.2",
+    "@rollup/plugin-node-resolve": "^14.1.0",
+    "eslint": "^8.23.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "pre-commit": "^1.2.2",
     "prettier": "^2.7.1",
-    "rollup": "^2.75.6",
+    "rollup": "^2.79.0",
     "rollup-plugin-cleanup": "^3.2.1",
-    "web-ext": "^7.0.0"
+    "web-ext": "^7.2.0"
   }
 }
